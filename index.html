@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#080b10">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="История на България">
+<meta name="format-detection" content="telephone=no">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>История на България — Ultimate Seventh-Grade Quest</title>
+<style>
+:root{
+  --bg:#080b10;--panel:#111720;--panel2:#171e28;--gold:#d8ad55;--gold2:#f3d98d;
+  --text:#f6efdf;--muted:#a9a394;--green:#22c77a;--red:#e14a52;--blue:#62b9ff
+}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:Georgia,"Times New Roman",serif}
+body{background:
+ radial-gradient(circle at 15% 10%,rgba(216,173,85,.13),transparent 28%),
+ radial-gradient(circle at 85% 30%,rgba(55,120,170,.10),transparent 30%),
+ linear-gradient(135deg,#07090d,#121821 55%,#080b10)}
+button{font:inherit}
+.homeArrow{position:fixed;right:16px;left:auto;top:16px;z-index:200;width:112px;height:42px;display:flex;align-items:center;justify-content:center;gap:8px;border:1px solid rgba(216,173,85,.38);border-radius:12px;background:rgba(10,14,19,.92);color:#d9c99e;box-shadow:0 8px 28px #0008;backdrop-filter:blur(10px);cursor:pointer;transition:.18s;font:700 10px Arial;letter-spacing:1.5px}.homeArrow span{font:700 22px Arial;line-height:1;color:#f3d98d}.homeArrow:hover{border-color:#d8ad55;background:#171e27;color:#fff3cf;transform:translateX(-2px)}.homeArrow:active{transform:translateX(-1px) scale(.98)}@media(max-width:700px){.homeArrow{left:10px;top:max(10px,env(safe-area-inset-top));width:42px;height:42px;border-radius:50%;padding:0}.homeArrow b{display:none}.homeArrow span{font-size:23px}.top{padding-left:14px;padding-top:calc(58px + env(safe-area-inset-top));}.topin{gap:10px}.brand{min-width:0;max-width:100%;}.brand b{font-size:12px;line-height:1.25;letter-spacing:1.2px}.brand span{font-size:10px;line-height:1.3}.progressBox{min-width:0}.hud{flex-shrink:0}.pill{min-width:58px;padding:7px 8px}.app{padding-top:0}body{scroll-padding-top:120px}}
+.app{min-height:100vh}.top{position:sticky;top:0;z-index:20;padding:14px 20px;background:rgba(6,9,13,.9);backdrop-filter:blur(12px);border-bottom:1px solid rgba(216,173,85,.18)}
+.topin{max-width:1180px;margin:auto;display:flex;gap:18px;align-items:center}
+.brand{min-width:250px}.brand b{display:block;color:var(--gold2);letter-spacing:2px;font-size:14px;text-transform:uppercase}.brand span{color:#898579;font:11px Arial}
+.progressBox{flex:1}.progressMeta{display:flex;justify-content:space-between;color:#999487;font:11px Arial;margin-bottom:6px}.bar{height:9px;background:#1c232c;border:1px solid rgba(216,173,85,.25);border-radius:99px;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,#fff 0 33%,#22c77a 33% 66%,#e14a52 66%);transition:.35s}
+.hud{display:flex;gap:8px}.pill{border:1px solid rgba(216,173,85,.25);background:#111720;padding:8px 12px;border-radius:12px;text-align:center;min-width:72px}.pill small{display:block;color:#817d73;font:9px Arial;text-transform:uppercase}.pill strong{color:var(--gold2)}.sound{cursor:pointer;color:var(--gold2);background:#111720;border:1px solid rgba(216,173,85,.3);border-radius:50%;width:40px;height:40px}
+main{max-width:1180px;margin:auto;padding:28px 18px 50px}.screen{display:none}.screen.active{display:block}
+.hero{min-height:calc(100vh - 170px);display:flex;align-items:center;justify-content:center}.heroCard{width:min(1050px,100%);padding:48px 34px;border:1px solid rgba(216,173,85,.42);border-radius:28px;background:linear-gradient(145deg,rgba(23,29,37,.96),rgba(8,12,17,.97));box-shadow:0 25px 80px #0008;text-align:center}
+.kicker{color:var(--gold);font:11px Arial;letter-spacing:4px;text-transform:uppercase}.hero h1{font-size:clamp(40px,7vw,78px);line-height:.95;margin:18px 0;color:#fff8e7;text-shadow:0 4px 25px #000}.hero h1 span{display:block;color:var(--gold2);font-size:.42em;letter-spacing:5px;margin-top:18px}.lead{max-width:780px;margin:22px auto;color:#cfc6b5;line-height:1.65;font-size:17px}
+.eras{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:28px 0}.era{padding:14px;border:1px solid rgba(216,173,85,.2);border-radius:14px;background:#0e141b}.era b{display:block;color:var(--gold2);font-size:13px}.era span{display:block;color:#918d83;font-size:11px;line-height:1.35;margin-top:7px}
+.cta{cursor:pointer;border:1px solid #e0ba63;background:linear-gradient(135deg,#76551d,#e0b95f,#866426);color:#171107;border-radius:12px;padding:14px 28px;font-weight:700;letter-spacing:1px;box-shadow:0 10px 35px #d8ad5526;transition:.2s}.cta:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.gameHead{display:flex;justify-content:space-between;align-items:end;gap:20px;margin:8px 0 15px}.gameHead small{color:var(--gold);font:10px Arial;letter-spacing:3px}.gameHead h2{margin:5px 0 0;font-size:clamp(28px,4vw,46px)}.role{border:1px solid rgba(216,173,85,.25);padding:10px 14px;border-radius:12px;background:#111720;text-align:right}.role small{display:block;color:#7f7a70;font:9px Arial}.role b{color:var(--gold2);font-size:13px}
+.panel{position:relative;border:1px solid rgba(216,173,85,.35);border-radius:24px;padding:24px;background:linear-gradient(145deg,#1a2028,#0c1117);box-shadow:0 22px 70px #0009;overflow:hidden}.panel:before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,#fff 0 33%,#22c77a 33% 66%,#e14a52 66%)}
+.qtop{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.qnum{font:11px Arial;color:#9c978b;letter-spacing:2px;text-transform:uppercase}.timer{width:68px;height:68px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--gold) var(--pct,100%),#28303a 0);position:relative}.timer:after{content:"";position:absolute;inset:6px;background:#10151c;border-radius:50%;border:1px solid rgba(216,173,85,.22)}.timer b{position:relative;z-index:1;font:700 20px Arial}.timer.danger{background:conic-gradient(var(--red) var(--pct,100%),#3a2024 0);animation:pulse .5s infinite alternate}@keyframes pulse{to{transform:scale(1.06)}}
+.visual{height:250px;border-radius:18px;border:1px solid rgba(216,173,85,.18);background:#070a0f;position:relative;overflow:hidden;margin-bottom:20px}.visual canvas{width:100%;height:100%;display:block}.vlabel{position:absolute;left:14px;top:12px;padding:7px 9px;border:1px solid rgba(216,173,85,.3);border-radius:8px;background:#080c12c9;color:var(--gold2);font:10px Arial;letter-spacing:1px}.vhint{position:absolute;right:14px;bottom:12px;color:#8e897d;font:10px Arial}
+.question{font-size:clamp(21px,3vw,30px);line-height:1.35;margin:0 0 20px}.options{display:grid;grid-template-columns:1fr 1fr;gap:12px}.option{min-height:68px;text-align:left;border:1px solid rgba(216,173,85,.22);border-radius:14px;background:#151b23;color:#e8e0d1;padding:13px 15px;display:flex;gap:12px;align-items:flex-start;cursor:pointer;transition:.18s}.option:hover{transform:translateY(-2px);border-color:var(--gold);background:#1b222b}.option:disabled{cursor:default;opacity:.96}.option:disabled:hover{transform:none}.cta:disabled{opacity:.55;cursor:not-allowed}.crossSkip{margin-top:9px;width:100%;background:#111820!important;border-color:rgba(98,185,255,.25)!important;color:#b9cddd!important}.crossSkip:hover{border-color:var(--blue)!important;background:#13202a!important}.letter{width:30px;height:30px;flex:0 0 30px;border-radius:50%;border:1px solid rgba(216,173,85,.45);display:grid;place-items:center;color:var(--gold2);font:12px Arial}.option.correct{background:#123b2a;border-color:var(--green);box-shadow:0 0 28px #22c77a26}.option.wrong{background:#431d22;border-color:var(--red);animation:shake .35s}.orderRow.orderWrong{animation:shake .35s}@keyframes shake{25%{transform:translateX(-7px)}50%{transform:translateX(7px)}75%{transform:translateX(-4px)}}
+.explain{margin-top:15px;padding:14px;border-radius:12px;background:#0d131a;border:1px solid rgba(216,173,85,.2);line-height:1.55;color:#c9c1b1}.explain b{color:var(--gold2)}.next{text-align:right;margin-top:15px}.next button{display:none}.next button.show{display:inline-block}
+.order{display:flex;flex-direction:column;gap:8px}.orderRow{display:flex;align-items:center;gap:10px;padding:13px;border:1px solid rgba(216,173,85,.22);border-radius:12px;background:#151b23}.orderRow button{border:1px solid #5a5140;background:#242a32;color:#e9ddc4;border-radius:8px;cursor:pointer;padding:5px 9px}.orderRow span{flex:1}.check{margin-top:13px}
+.hintBar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:12px}
+.hintBtn,.solutionBtn{border:1px solid rgba(216,173,85,.35);background:#111820;color:#d9c99e;border-radius:9px;padding:8px 12px;cursor:pointer;font:11px Arial}
+.hintBtn:hover,.solutionBtn:hover{border-color:var(--gold);background:#18212b}
+.hintBox,.solutionBox{display:none;margin-top:9px;padding:10px 12px;border-radius:8px;font:12px Arial;line-height:1.45}
+.hintBox{border-left:3px solid var(--gold);background:rgba(216,173,85,.055);color:#bdb4a3}
+.solutionBox{border:1px solid rgba(98,185,255,.25);background:#0b151e;color:#c6d8e5}
+.hintBox.show,.solutionBox.show{display:block}
+
+.person{display:flex;align-items:center;gap:14px;margin-bottom:14px;padding:12px;border:1px solid rgba(216,173,85,.18);border-radius:12px;background:#10161d}.avatar{font-size:35px}.person b{color:var(--gold2)}
+.cross{display:grid;gap:3px;margin:10px auto;max-width:360px}.cell{aspect-ratio:1;border:1px solid #62583f;background:#111820;display:grid;place-items:center;color:#eee5d1;font-weight:700}.cell.word{color:var(--gold2);background:#2a2518}
+.end{min-height:calc(100vh - 180px);display:grid;place-items:center;text-align:center}.endCard{width:min(850px,100%);padding:45px;border:1px solid rgba(216,173,85,.42);border-radius:28px;background:linear-gradient(145deg,#1a2028,#0b1016);box-shadow:0 25px 80px #000}.end h2{font-size:clamp(40px,7vw,70px);margin:12px 0;color:#fff6df}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:25px 0}.endStat{padding:15px;border:1px solid rgba(216,173,85,.2);border-radius:12px}.endStat small{display:block;color:#888277;font:10px Arial}.endStat b{color:var(--gold2);font-size:22px}
+#fx{position:fixed;inset:0;pointer-events:none;z-index:100}.particle{position:absolute;width:8px;height:8px;border-radius:2px;animation:fall 1.2s forwards}@keyframes fall{to{transform:translate(var(--dx),105vh) rotate(720deg);opacity:0}}.flash{position:absolute;inset:0;background:#e14a5238;animation:fade .35s forwards}@keyframes fade{to{opacity:0}}.timeWarning{position:fixed;left:50%;top:24%;transform:translate(-50%,-50%) scale(.7);opacity:0;pointer-events:none;z-index:120;display:flex;align-items:center;gap:12px;background:#111820;border:2px solid var(--red);border-radius:16px;padding:12px 18px;box-shadow:0 14px 45px #000b;transition:.18s}.timeWarning.show{opacity:1;transform:translate(-50%,-50%) scale(1)}.timeGuy{font-size:40px;line-height:1;filter:drop-shadow(0 3px 8px #000)}.timeBubble{position:relative;color:#fff0d0;font:800 18px Arial;letter-spacing:.8px}.timeBubble small{display:block;color:#d99a9d;font:11px Arial;margin-top:3px}.wrongMark{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.4);font:900 92px Arial;color:#ff6b72;text-shadow:0 4px 18px #000;animation:wrongMark .55s forwards}@keyframes wrongMark{35%{transform:translate(-50%,-50%) scale(1.05)}100%{transform:translate(-50%,-50%) scale(1);opacity:0}}
+@media(max-width:800px){.topin{flex-wrap:wrap}.brand{min-width:auto}.progressBox{order:3;flex-basis:100%}.eras{grid-template-columns:1fr 1fr}.options{grid-template-columns:1fr}.gameHead{align-items:start}.role{font-size:11px}.panel{padding:16px}.visual{height:210px}.stats{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){main{padding:15px 10px 35px}.heroCard{padding:32px 18px}.eras{grid-template-columns:1fr}.hero h1{font-size:42px}.qtop{align-items:flex-start}}
+
+.modeGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:28px 0}.modeCard{padding:20px 16px;min-height:150px;border:1px solid rgba(216,173,85,.25);border-radius:16px;background:linear-gradient(145deg,#121923,#0c1117);color:#e9dfcb;text-align:left;cursor:pointer;transition:.2s}.modeCard:hover,.modeCard.selected{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 12px 35px #d8ad5520}.modeCard .mi{font-size:28px;margin-bottom:10px}.modeCard b{display:block;color:var(--gold2);font-size:15px}.modeCard span{display:block;color:#999386;font:11px Arial;line-height:1.45;margin-top:7px}.modeNote{font:11px Arial;color:#817b70;margin-top:12px}.crossLayout{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:start}.crossGrid{display:grid;grid-template-columns:repeat(17,minmax(20px,1fr));gap:3px;max-width:650px;margin:0 auto;padding:14px;background:#080c12;border:1px solid rgba(216,173,85,.18);border-radius:16px}.crossCell{aspect-ratio:1;display:grid;place-items:center;border:1px solid #353d47;background:#121922;color:#eee6d3;font:bold 15px Arial;position:relative}.crossCell.active{background:#1c2730;border-color:#756039}.crossCell.key{background:#3b3019;border-color:var(--gold);box-shadow:inset 0 0 18px #d8ad5518}.crossCell input{width:100%;height:100%;border:0;outline:0;background:transparent;text-align:center;color:#fff4ca;font:bold 16px Arial;text-transform:uppercase}.crossCell input:focus{background:#29333d}.crossClues{display:flex;flex-direction:column;gap:8px}.clue{display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:center;padding:9px;border:1px solid rgba(216,173,85,.18);background:#10161d;border-radius:10px}.clue b{color:var(--gold2);font:12px Arial}.clue span{color:#c9c0af;font-size:13px;line-height:1.3}.crossResult{margin-top:12px;padding:12px;border-radius:12px;background:#0c1319;border:1px solid rgba(216,173,85,.2);color:#c9c0af}.crossResult strong{color:var(--gold2)}.crossHint{margin-top:10px;padding:10px 12px;border-left:3px solid var(--gold);border-radius:8px;background:rgba(216,173,85,.06);color:#bdb4a3;font:12px Arial;line-height:1.45}.crossHint b{color:var(--gold2)}.finalBreakdown{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}.levelBox{padding:13px;border:1px solid rgba(216,173,85,.2);border-radius:12px;background:#10161d}.levelBox b{display:block;color:var(--gold2);font-size:13px}.levelBox span{display:block;color:#9b9588;font:11px Arial;margin-top:5px}.assessment{max-width:760px;margin:20px auto 0;text-align:left}.assessmentBar{height:14px;border-radius:99px;background:#202832;overflow:hidden;border:1px solid rgba(216,173,85,.22)}.assessmentFill{height:100%;width:0;background:linear-gradient(90deg,#e14a52,#d8ad55,#22c77a);transition:1s}.rank{font-size:30px;color:var(--gold2);margin:15px 0}.modeBadge{display:inline-block;padding:5px 9px;border-radius:999px;border:1px solid rgba(216,173,85,.3);color:var(--gold2);font:10px Arial;letter-spacing:1px;text-transform:uppercase}
+@media(max-width:900px){.modeGrid{grid-template-columns:1fr 1fr}.crossLayout{grid-template-columns:1fr}}
+@media(max-width:560px){.modeGrid{grid-template-columns:1fr}.crossGrid{gap:2px;padding:8px}.crossCell{font-size:12px}.crossCell input{font-size:13px}}
+
+/* v12: mobile home navigation moved to the right so it never covers the title/question text */
+@media(max-width:720px){
+  .homeArrow{left:auto;right:max(12px,env(safe-area-inset-right,0px));top:max(12px,env(safe-area-inset-top,0px));width:44px;height:44px;padding:0;border-radius:50%;gap:0}
+  .homeArrow b{display:none}
+  .top{padding-right:72px}
+}
+
+/* Mobile / Android / iOS hardening */
+html{width:100%;min-height:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%;overscroll-behavior-y:none}
+body{width:100%;min-height:100%;-webkit-tap-highlight-color:transparent;touch-action:manipulation;overflow-x:hidden}
+button,input{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+input{font-size:16px}
+canvas{display:block;max-width:100%;touch-action:none}
+@media(max-width:700px){
+  .homeArrow{left:auto;right:max(10px,env(safe-area-inset-right));top:max(10px,env(safe-area-inset-top));}
+  .top{padding-top:calc(58px + env(safe-area-inset-top));padding-right:calc(58px + env(safe-area-inset-right));}
+  .topin{width:100%;align-items:flex-start}
+  .brand{padding-right:4px}
+  .brand b{word-break:normal;overflow-wrap:anywhere}
+  .game,.start,.screen{width:100%;max-width:100%;}
+  .visual{width:100%;min-height:230px;overflow:hidden}
+  .visual canvas{width:100%;height:100%;}
+  .options{grid-template-columns:1fr}
+  .crossLayout{grid-template-columns:1fr}
+  .crossGrid{width:100%;max-width:100%;gap:2px;padding:8px}
+  .crossCell{min-width:0}
+  .crossCell input{font-size:16px}
+  .modeGrid{grid-template-columns:1fr 1fr}
+  .finalBreakdown{grid-template-columns:1fr}
+}
+@media(max-width:430px){
+  .modeGrid{grid-template-columns:1fr}
+  .question{font-size:21px}
+  .visual{min-height:210px}
+  .crossGrid{padding:6px;gap:2px}
+  .crossCell{font-size:12px}
+  .crossCell input{font-size:15px}
+}
+
+</style>
+</head>
+<body>
+<button class="homeArrow" id="homeArrow" type="button" aria-label="Върни се в началната страница" title="Към началната страница"><span>←</span><b>НАЧАЛО</b></button>
+<div class="app">
+<header class="top">
+  <div class="topin">
+    <div class="brand"><b>Българска история</b><span>ULTIMATE SEVENTH-GRADE QUEST</span></div>
+    <div class="progressBox"><div class="progressMeta"><span id="progressText">Епоха 1 · Въпрос 1</span><span id="progressPct">0%</span></div><div class="bar"><div class="fill" id="progressFill"></div></div></div>
+    <div class="hud"><div class="pill"><small>Чест</small><strong id="score">0</strong></div><div class="pill"><small>Животи</small><strong id="lives">♥ ♥ ♥</strong></div><button class="sound" id="soundBtn" title="Звукови ефекти">♫</button></div>
+  </div>
+</header>
+
+<main>
+<section class="screen active" id="startScreen">
+ <div class="hero"><div class="heroCard">
+  <div class="kicker">Интерактивна историческа експедиция</div>
+  <h1>History of Bulgaria<span>The Ultimate Seventh-Grade Quest</span></h1>
+  <p class="lead">Избери как да учиш. Във всеки режим задачите се разбъркват. След избрания режим следва <b>финален смесен тест</b>, който оценява знанията ти по история на България за 7. клас.</p>
+  <div class="eras">
+   <div class="era"><b>I · Възраждане</b><span>личности, организации, култура</span></div>
+   <div class="era"><b>II · 1878–1886</b><span>държавност, Конституция, Съединение</span></div>
+   <div class="era"><b>III · 1887–1918</b><span>модернизация, войни, Независимост</span></div>
+   <div class="era"><b>IV · 1919–1944</b><span>междувоенна България</span></div>
+   <div class="era"><b>V · След 1944</b><span>режим, преход, Европа</span></div>
+  </div>
+  <h3 style="color:var(--gold2);margin:25px 0 10px">ИЗБЕРИ РЕЖИМ</h3>
+  <div class="modeGrid">
+   <button class="modeCard" data-mode="quiz"><div class="mi">⚔️</div><b>Само КУИЗ</b><span>Исторически казуси, личности и въпроси с 4 отговора.</span></button>
+   <button class="modeCard" data-mode="cross"><div class="mi">▦</div><b>Само КРЪСТОСЛОВИЦИ</b><span>Решаваш тематични кръстословици. Скритата дума се открива от пресечните букви.</span></button>
+   <button class="modeCard" data-mode="chrono"><div class="mi">↕</div><b>ХРОНОЛОГИЯ</b><span>Подреждаш събитията от най-ранното към най-късното.</span></button>
+   <button class="modeCard" data-mode="mixed"><div class="mi">✦</div><b>СМЕСЕН ТИП</b><span>Комбинация от куиз, кръстословици и хронологични задачи.</span></button>
+  </div>
+  <button class="cta" id="startBtn">ЗАПОЧНИ ЕКСПЕДИЦИЯТА</button>
+  <div class="modeNote">Избраният режим е само тренировъчната част. Накрая винаги има смесен финален тест.</div>
+ </div></div>
+</section>
+
+<section class="screen" id="gameScreen">
+ <div class="gameHead"><div><small id="eraKicker"></small><h2 id="eraTitle"></h2></div><div class="role"><small>РЕЖИМ</small><b id="eraRole"></b></div></div>
+ <div class="panel">
+  <div class="qtop"><div class="qnum" id="qnum"></div><div class="timer" id="timer"><b id="time">20</b></div></div>
+  <div id="challenge"></div>
+  <div class="next"><button class="cta" id="nextBtn">ПРОДЪЛЖИ →</button></div>
+ </div>
+</section>
+
+<section class="screen" id="endScreen">
+ <div class="end"><div class="endCard">
+  <div class="kicker" id="endKicker">МИСИЯТА ЗАВЪРШИ</div><h2 id="endTitle">Резултат</h2>
+  <p class="lead" id="endMessage"></p>
+  <div class="stats"><div class="endStat"><small>Точки</small><b id="finalScore">0</b></div><div class="endStat"><small>Финален тест</small><b id="finalCorrect">0/10</b></div><div class="endStat"><small>Средно време</small><b id="finalTime">0 s</b></div><div class="endStat"><small>Животи</small><b id="finalLives">3</b></div></div>
+  <div class="assessment"><div style="display:flex;justify-content:space-between;align-items:center"><span style="color:#aaa394;font:11px Arial">НИВО НА ЗНАНИЯТА · 7 КЛАС</span><b id="assessmentPct" style="color:var(--gold2)">0%</b></div><div class="assessmentBar"><div class="assessmentFill" id="assessmentFill"></div></div><div class="rank" id="rank">Исторически изследовател</div><p id="assessmentText" style="color:#bcb4a5;line-height:1.6"></p></div>
+  <div class="finalBreakdown" id="breakdown"></div>
+  <button class="cta" id="restartBtn">НОВА ЕКСПЕДИЦИЯ</button>
+ </div></div>
+</section>
+</main>
+<div id="timeWarning" class="timeWarning"><div class="timeGuy">🧑</div><div class="timeBubble">НЯМА ВРЕМЕ!<small>Остават само секунди!</small></div></div><div id="fx"></div>
+</div>
+
+<script>
+"use strict";
+
+const ERAS=[
+ {title:"Българското възраждане",kicker:"ЕПОХА I · XVIII–XIX В.",role:"Млад революционер и съратник на Левски"},
+ {title:"Възстановяване на държавността",kicker:"ЕПОХА II · 1878–1886 Г.",role:"Делегат в Учредителното събрание"},
+ {title:"Модернизация и национално обединение",kicker:"ЕПОХА III · 1887–1918 Г.",role:"Генерал от българската армия"},
+ {title:"Междувоенна България",kicker:"ЕПОХА IV · 1919–1944 Г.",role:"Царски съветник"},
+ {title:"Съвременна България",kicker:"ЕПОХА V · СЛЕД 1944 Г.",role:"Млад визионер"}
+];
+const BANK=[
+ {era:0,type:"mcq",q:"В революционната мрежа на Левски кое действие е най-съобразено с неговия подход?",a:["Да се чака външна армия","Да се изграждат местни комитети и връзки между тях","Да се започне неподготвено въстание","Да се прекрати просветната дейност"],c:1,e:"Левски поставя организацията, местните комитети и подготовката на населението в центъра на революционното дело."},
+ {era:0,type:"timeline",q:"Подреди събитията от най-ранното към най-късното.",items:["Българската екзархия","Обесването на Левски","Априлското въстание","Руско-турската война 1877–1878"],order:[0,1,2,3],e:"Екзархията е учредена през 1870 г., Левски е обесен през 1873 г., въстанието е през 1876 г., а войната започва през 1877 г."},
+ {era:0,type:"person",q:"Коя личност изгражда широка мрежа от революционни комитети?",name:"Васил Левски",avatar:"⚔️",roles:["Организатор на революционни комитети","Първи княз на България","Автор на Търновската конституция","Цар на България"],c:0,e:"Васил Левски организира Вътрешната революционна организация."},
+ {era:0,type:"mcq",q:"Кое е важно проявление на националното Възраждане?",a:["Развитие на училища, книжнина и читалища","Отказ от българския език","Закриване на училищата","Прекратяване на книгоиздаването"],c:0,e:"Просветата и културните институции укрепват българското национално самосъзнание."},
+ {era:0,type:"mcq",q:"Кога е учредена Българската екзархия?",a:["1870 г.","1762 г.","1885 г.","1908 г."],c:0,e:"Българската екзархия е учредена през 1870 г. със султански ферман."},
+ {era:0,type:"mcq",q:"Кой е авторът на „История славянобългарска“?",a:["Паисий Хилендарски","Христо Ботев","Любен Каравелов","Георги Раковски"],c:0,e:"Паисий Хилендарски създава „История славянобългарска“ през 1762 г."},
+ {era:0,type:"mcq",q:"Каква е целта на революционните комитети на Левски?",a:["Да подготвят организирано общонародно освободително движение","Да управляват османската администрация","Да събират данъци за империята","Да прекратят българското образование"],c:0,e:"Комитетите са част от мрежата за подготовка на организирана борба за освобождение."},
+ {era:1,type:"mcq",q:"Кой принцип е характерен за Търновската конституция?",a:["Конституционен ред и народно представителство","Неограничена власт на монарха","Премахване на парламента","Забрана на политическите свободи"],c:0,e:"Търновската конституция от 1879 г. установява конституционна монархия и представителни институции."},
+ {era:1,type:"timeline",q:"Подреди събитията хронологично.",items:["Санстефански договор","Берлински договор","Търновска конституция","Съединение"],order:[0,1,2,3],e:"1878 г. — Сан Стефано и Берлин; 1879 г. — Търновска конституция; 1885 г. — Съединение."},
+ {era:1,type:"person",q:"Коя личност е първият княз на Княжество България?",name:"Александър I Батенберг",avatar:"👑",roles:["Първи княз на Княжество България","Апостол на свободата","Председател на Учредителното събрание","Министър-председател след 1908 г."],c:0,e:"Александър I Батенберг е първият княз на Княжество България."},
+ {era:1,type:"mcq",q:"Кое събитие става на 6 септември 1885 г.?",a:["Съединението","Независимостта","Освобождението","Априлското въстание"],c:0,e:"На 6 септември 1885 г. Княжество България и Източна Румелия се съединяват."},
+ {era:1,type:"mcq",q:"Коя война следва Съединението през 1885 г.?",a:["Сръбско-българската война","Балканската война","Кримската война","Първата световна война"],c:0,e:"Съединението е последвано от Сръбско-българската война през 1885 г."},
+ {era:1,type:"mcq",q:"Кога България обявява независимост?",a:["22 септември 1908 г.","6 септември 1885 г.","3 март 1878 г.","16 април 1879 г."],c:0,e:"Независимостта е обявена на 22 септември 1908 г."},
+ {era:1,type:"mcq",q:"Какъв е статутът на Княжество България според Берлинския договор?",a:["Автономно княжество под върховенството на султана","Независима република","Османска провинция без автономия","Част от Русия"],c:0,e:"Берлинският договор определя България като автономно княжество под върховенството на султана."},
+ {era:2,type:"mcq",q:"Кога България участва в Балканските войни?",a:["1912–1913 г.","1908–1909 г.","1915–1918 г.","1923–1925 г."],c:0,e:"България участва в Балканските войни през 1912–1913 г."},
+ {era:2,type:"timeline",q:"Подреди събитията.",items:["Независимост","Балкански войни","Междусъюзническа война","Влизане на България в Първата световна война"],order:[0,1,2,3],e:"1908 г. — Независимост; 1912–1913 г. — Балкански войни; 1913 г. — Междусъюзническа война; 1915 г. — България влиза в Първата световна война."},
+ {era:2,type:"person",q:"Кой монарх управлява България при обявяването на Независимостта?",name:"Фердинанд I",avatar:"👑",roles:["Фердинанд I","Борис III","Александър I Батенберг","Симеон I"],c:0,e:"Фердинанд I е княз, а от 1908 г. цар на България; при него е обявена Независимостта."},
+ {era:2,type:"mcq",q:"Кога България се включва в Първата световна война?",a:["1915 г.","1912 г.","1918 г.","1919 г."],c:0,e:"България се присъединява към Централните сили през 1915 г."},
+ {era:2,type:"mcq",q:"Какво характеризира модернизацията в края на XIX и началото на XX век?",a:["Развитие на инфраструктура, индустрия, образование и армия","Отказ от железници","Закриване на училищата","Пълно прекратяване на градския живот"],c:0,e:"Периодът е свързан с ускорено развитие на институциите, инфраструктурата, икономиката и образованието."},
+ {era:2,type:"mcq",q:"Какъв е резултатът за България след Междусъюзническата война?",a:["Териториални загуби и Букурещкият договор от 1913 г.","Незабавно членство в ЕС","Възстановяване на Търновската конституция","Обявяване на Независимостта"],c:0,e:"След войната България губи територии; Букурещкият договор е подписан през 1913 г."},
+ {era:2,type:"mcq",q:"Кога е обявена Независимостта на България?",a:["22 септември 1908 г.","3 март 1878 г.","6 септември 1885 г.","16 април 1879 г."],c:0,e:"На 22 септември 1908 г. България обявява своята Независимост."},
+ {era:3,type:"mcq",q:"Какъв е историческият контекст на Ньойския договор?",a:["Поражението на България в Първата световна война","Съединението","Освобождението","Балканската война"],c:0,e:"Ньойският договор е мирният договор с България след Първата световна война."},
+ {era:3,type:"timeline",q:"Подреди събитията.",items:["Ньойски договор","Деветоюнски преврат","Деветнадесетомайски преврат","9 септември"],order:[0,1,2,3],e:"1919 г. — Ньойски договор; 1923 г. — Деветоюнски преврат; 1934 г. — Деветнадесетомайски преврат; 1944 г. — 9 септември."},
+ {era:3,type:"person",q:"Кой е цар на България през по-голямата част от междувоенния период?",name:"Борис III",avatar:"👑",roles:["Борис III","Фердинанд I","Александър I Батенберг","Симеон I"],c:0,e:"Борис III е цар на България от 1918 до 1943 г."},
+ {era:3,type:"mcq",q:"Какво се случва през 1934 г.?",a:["Държавен преврат и промяна на политическата система","Съединението","Обявяване на Независимостта","Приемане на Конституцията от 1991 г."],c:0,e:"На 19 май 1934 г. е извършен държавен преврат, след който политическият режим е променен."},
+ {era:3,type:"mcq",q:"Какво се случва на 9 септември 1944 г.?",a:["Смяна на властта и установяване на правителство на Отечествения фронт","Обявяване на Независимостта","Съединение с Румъния","Приемане на Търновската конституция"],c:0,e:"На 9 септември 1944 г. властта е сменена и е съставено правителство на Отечествения фронт."},
+ {era:3,type:"mcq",q:"Кое е характерно за политическия живот между 1919 и 1944 г.?",a:["Силна политическа поляризация, преврати и нестабилност","Непрекъсната политическа стабилност","Липса на обществени конфликти","Членство в ЕС"],c:0,e:"Междувоенният период е белязан от политическа поляризация, преврати и конфликти."},
+ {era:4,type:"mcq",q:"Какво е характерно за политическата система в България след 1944 г.?",a:["Постепенно установяване на комунистически еднопартиен режим","Възстановяване на Търновската конституция","Незабавно членство в ЕС","Възстановяване на монархията"],c:0,e:"След 1944 г. постепенно се установява комунистически политически режим."},
+ {era:4,type:"mcq",q:"Какво представлява национализацията?",a:["Прехвърляне на значителна част от частната собственост към държавата","Приватизация на държавните предприятия","Влизане в ЕС","Обявяване на Независимост"],c:0,e:"Национализацията прехвърля значителна част от частната собственост в държавни ръце."},
+ {era:4,type:"timeline",q:"Подреди събитията.",items:["10 ноември 1989","Конституция 1991","НАТО 2004","ЕС 2007"],order:[0,1,2,3],e:"1989 г. — начало на политическия преход; 1991 г. — действаща Конституция; 2004 г. — НАТО; 2007 г. — Европейски съюз."},
+ {era:4,type:"mcq",q:"Какво се случва на 10 ноември 1989 г.?",a:["Тодор Живков е отстранен от ръководния пост в БКП","България влиза в НАТО","Приета е Търновската конституция","Обявена е Независимостта"],c:0,e:"На 10 ноември 1989 г. Тодор Живков е освободен от поста генерален секретар на БКП."},
+ {era:4,type:"mcq",q:"Кога е приета действащата Конституция на Република България?",a:["1991 г.","1989 г.","1997 г.","2007 г."],c:0,e:"Конституцията е приета на 12 юли 1991 г."},
+ {era:4,type:"mcq",q:"Кога България става член на НАТО?",a:["2004 г.","1991 г.","2007 г.","1999 г."],c:0,e:"България се присъединява към НАТО през 2004 г."},
+ {era:4,type:"mcq",q:"Кога България става член на Европейския съюз?",a:["2007 г.","2004 г.","1991 г.","2013 г."],c:0,e:"България става член на Европейския съюз на 1 януари 2007 г."}
+];
+
+const CROSSWORDS=[
+ {word:"БЪЛГАРИЯ",rows:[
+  ["Ботев","Личност, свързана с поезията и националноосвободителното движение.",0],
+  ["Възраждане","Периодът на национално-културно пробуждане.",1],
+  ["Левски","Апостолът на свободата.",0],
+  ["България","Името на държавата.",3],
+  ["Април","Месецът на Априлското въстание.",0],
+  ["Раковски","Революционер и идеолог на националното движение.",0],
+  ["История","Наука, изучаваща миналото.",0],
+  ["Ятаци","Помощници на партизаните през Втората световна война.",0]
+ ]},
+ {word:"ЛЕВСКИ",rows:[
+  ["Левски","Апостолът на свободата.",0],
+  ["Екзархия","Българската църковна институция, учредена през 1870 г.",0],
+  ["ВРО","Вътрешната революционна организация, изграждана от Левски.",0],
+  ["Свобода","Основна цел на националноосвободителното движение.",0],
+  ["Килийно","Тип училище, разпространено през ранното Възраждане.",0],
+  ["Илинден","Въстание от 1903 г.",0]
+ ]},
+ {word:"ШИПКА",rows:[
+  ["Шипка","Връх и символ на боевете през Руско-турската война.",0],
+  ["Хаджи","Начало на името на Хаджи Димитър.",4],
+  ["Плевен","Градът, свързан с важните боеве и обсадата през 1877 г.",0],
+  ["Княжество","Форма на българската държава след Берлинския договор.",0],
+  ["Апостол","Почетно название, свързвано с Васил Левски.",0]
+ ]},
+ {word:"ПЛОВДИВ",rows:[
+  ["Пловдив","Град, свързан със Съединението.",0],
+  ["Левски","Апостолът на свободата.",0],
+  ["Оборище","Място на събранието преди Априлското въстание.",0],
+  ["Войвода","Военен водач или предводител в българската историческа традиция.",0],
+  ["Духовен","Свързан с културното и националното развитие.",0],
+  ["Икономика","Обществена сфера, която се модернизира.",0],
+  ["Век","Единица за 100 години.",0]
+ ]},
+ {word:"ТЪРНОВО",rows:[
+  ["Търново","Градът на Учредителното събрание и Конституцията.",0],
+  ["Ъгъл","Геометрично понятие, за да се провери буквата Ъ.",0],
+  ["Раковски","Революционер от Възраждането.",0],
+  ["Народ","Общност от хора, обединени от обща история и култура.",0],
+  ["Оборище","Място на събрание от 1876 г.",0],
+  ["Век","Единица за период от сто години.",0],
+  ["Охрид","Исторически български книжовен център.",0]
+ ]}
+];
+
+const FINAL=[
+ {q:"Кой създава „История славянобългарска“?",a:["Паисий Хилендарски","Левски","Ботев","Раковски"],c:0,e:"Паисий Хилендарски."},
+ {q:"Кога е приета Търновската конституция?",a:["1879 г.","1878 г.","1885 г.","1908 г."],c:0,e:"Тя е приета през 1879 г."},
+ {q:"Кое събитие е на 6 септември 1885 г.?",a:["Съединението","Независимостта","Априлското въстание","Освобождението"],c:0,e:"Съединението на Княжество България и Източна Румелия."},
+ {q:"Кога е обявена Независимостта на България?",a:["22 септември 1908 г.","6 септември 1885 г.","3 март 1878 г.","16 април 1879 г."],c:0,e:"22 септември 1908 г."},
+ {q:"Кой договор е сключен след Първата световна война с България?",a:["Ньойският договор","Берлинският договор","Букурещкият договор","Санстефанският договор"],c:0,e:"Ньойският договор е подписан през 1919 г."},
+ {q:"Какво се случва на 9 септември 1944 г.?",a:["Смяна на властта","Обявяване на Независимостта","Съединение","Приемане на Конституцията от 1991 г."],c:0,e:"На 9 септември 1944 г. е извършена смяна на властта."},
+ {q:"Какво се случва на 10 ноември 1989 г.?",a:["Тодор Живков е отстранен от поста генерален секретар на БКП","България влиза в ЕС","Приета е Търновската конституция","Обявена е Независимостта"],c:0,e:"Това е ключова дата в началото на политическия преход."},
+ {q:"Кога България става член на НАТО?",a:["2004 г.","2007 г.","1991 г.","1989 г."],c:0,e:"България се присъединява към НАТО през 2004 г."},
+ {q:"Кога България става член на Европейския съюз?",a:["2007 г.","2004 г.","1991 г.","2013 г."],c:0,e:"Членството в ЕС започва на 1 януари 2007 г."},
+{type:"cross",crossword:CROSSWORDS.find(x=>x.word==="ЛЕВСКИ"),q:"Финална кръстословица: попълни всички определения. Скритата дума е свързана с българското националноосвободително движение."}
+];
+
+const state={mode:"mixed",stage:"training",era:0,q:0,score:0,lives:3,correct:0,totalTime:0,answered:false,timer:null,start:0,sound:true,audio:null,timeWarning:false,questionId:0,currentDuration:20,visualFrame:0,trainingDone:0,finalIndex:0,finalCorrect:0,cross:null,crossOrder:[],crossIndex:0,history:[0,0,0,0,0],order:[null,null,null,null,null]};
+const $=id=>document.getElementById(id);const screens={start:$('startScreen'),game:$('gameScreen'),end:$('endScreen')};
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function show(s){Object.values(screens).forEach(x=>x.classList.remove('active'));s.classList.add('active')}
+function modeName(){return {quiz:'Само куиз',cross:'Само кръстословици',chrono:'Само хронология',mixed:'Смесен тип'}[state.mode]}
+function updateHud(){
+ $('score').textContent=state.score;$('lives').textContent='♥ '.repeat(state.lives)+'♡ '.repeat(3-state.lives);
+ const total=state.stage==='final'?state.finalIndex:state.trainingDone;const max=state.stage==='final'?10:15;const pct=Math.round(total/max*100);$('progressFill').style.width=pct+'%';$('progressPct').textContent=pct+'%';$('progressText').textContent=state.stage==='final'?`Финален тест · ${Math.min(10,state.finalIndex+1)} / 10`:`Тренировка · ${Math.min(15,state.trainingDone+1)} / 15`;
+}
+function setHeader(){if(state.stage==='final'){$('eraKicker').textContent='ФИНАЛЕН СМЕСЕН ТЕСТ';$('eraTitle').textContent='Провери цялостните си знания';$('eraRole').textContent='Оценка за 7. клас'}else{const e=ERAS[state.era];$('eraKicker').textContent=e.kicker;$('eraTitle').textContent=e.title;$('eraRole').textContent=modeName()}}
+function validBank(){return BANK.every(x=>x.q&&x.e&&((x.type==='mcq'&&x.a?.length===4&&Number.isInteger(x.c)&&x.c>=0&&x.c<x.a.length)||(x.type==='person'&&x.roles?.length===4&&Number.isInteger(x.c)&&x.c>=0&&x.c<x.roles.length)||(x.type==='timeline'&&x.items?.length===x.order?.length&&x.order.every(i=>Number.isInteger(i)&&i>=0&&i<x.items.length))))}
+console.assert(validBank(),'Невалидна база с въпроси');
+function visualHTML(){return `<div class="visual"><canvas id="viz"></canvas><div class="vlabel">${state.stage==='final'?'ФИНАЛЕН АРХИВ':['ВЪЗРАЖДАНЕ','ДЪРЖАВНО СТРОИТЕЛСТВО','МОДЕРНИЗАЦИЯ','МЕЖДУВОЕНЕН ПЕРИОД','СЪВРЕМЕННОСТ'][state.era]}</div><div class="vhint">интерактивен исторически архив</div></div>`}
+function drawVisual(){
+ if(state.visualFrame)cancelAnimationFrame(state.visualFrame);
+ const c=$('viz'); if(!c)return;
+ const ctx=c.getContext('2d'); if(!ctx)return;
+ const visualQuestionId=state.questionId;
+ const box=c.parentElement;
+ const d=Math.min(window.devicePixelRatio||1,2);
+ const rect=box.getBoundingClientRect();
+ const w=Math.max(320,Math.floor(rect.width)),h=Math.max(180,Math.floor(rect.height));
+ c.width=Math.floor(w*d); c.height=Math.floor(h*d); c.style.width='100%'; c.style.height='100%';
+ const start=performance.now();
+ const era=state.stage==='final'?4:state.era;
+ const idx=state.stage==='final'?state.finalIndex:state.trainingDone;
+ const seed=(idx+1)*37+(era+1)*101;
+ const pal=[
+  {a:'#d8ad55',b:'#62b9ff',c:'#f3d98d',name:'ВЪЗРАЖДЕНСКА МРЕЖА'},
+  {a:'#f3d98d',b:'#62b9ff',c:'#d8ad55',name:'ДЪРЖАВОТВОРЕНЕ'},
+  {a:'#d8ad55',b:'#62b9ff',c:'#f3d98d',name:'МОДЕРНИЗАЦИЯ'},
+  {a:'#e14a52',b:'#d8ad55',c:'#f3d98d',name:'ИЗПИТАНИЯТА НА XX ВЕК'},
+  {a:'#62b9ff',b:'#d8ad55',c:'#f3d98d',name:'СЪВРЕМЕННА БЪЛГАРИЯ'}
+ ][era];
+ const particles=Array.from({length:90},(_,i)=>({
+   x:(Math.sin(seed*12.7+i*8.31)*43758.5)%1,
+   y:(Math.sin(seed*4.13+i*19.17)*24634.6)%1,
+   r:1+(i%4)*.55, phase:i*1.91, speed:.000025+(i%6)*.000009
+ }));
+ particles.forEach(p=>{p.x=(p.x+1)%1;p.y=(p.y+1)%1});
+ function rgba(hex,a){const n=parseInt(hex.slice(1),16);return `rgba(${n>>16},${n>>8&255},${n&255},${a})`}
+ function glow(x,y,r,color,a){
+   const g=ctx.createRadialGradient(x,y,0,x,y,r*5);
+   g.addColorStop(0,rgba(color,a));g.addColorStop(.18,rgba(color,a*.65));g.addColorStop(1,rgba(color,0));
+   ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,r*5,0,Math.PI*2);ctx.fill();
+   ctx.fillStyle=color;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
+ }
+ function rr(x,y,ww,hh,r){
+   const q=Math.min(r,ww/2,hh/2);ctx.beginPath();ctx.moveTo(x+q,y);ctx.lineTo(x+ww-q,y);ctx.quadraticCurveTo(x+ww,y,x+ww,y+q);ctx.lineTo(x+ww,y+hh-q);ctx.quadraticCurveTo(x+ww,y+hh,x+ww-q,y+hh);ctx.lineTo(x+q,y+hh);ctx.quadraticCurveTo(x,y+hh,x,y+hh-q);ctx.lineTo(x,y+q);ctx.quadraticCurveTo(x,y,x+q,y);ctx.closePath();
+ }
+ function line(x1,y1,x2,y2,color,a,lw){ctx.strokeStyle=rgba(color,a);ctx.lineWidth=lw;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke()}
+ function frame(t){
+   if(visualQuestionId!==state.questionId || !document.body.contains(c))return;
+   const time=(t-start)/1000;
+   try{
+    ctx.setTransform(d,0,0,d,0,0);
+    ctx.clearRect(0,0,w,h);
+    ctx.fillStyle='#02050a';ctx.fillRect(0,0,w,h);
+
+    // Strong moving atmospheric glow — deliberately visible in the black panel.
+    const bg=ctx.createRadialGradient(w*.50,h*.50,0,w*.50,h*.50,Math.max(w,h)*.72);
+    bg.addColorStop(0,rgba(pal.a,.18));bg.addColorStop(.35,rgba(pal.b,.08));bg.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);
+
+    // Moving particles / dust.
+    particles.forEach((p,i)=>{
+      const x=((p.x*w)+time*(18+i%5)*p.speed*80)%w;
+      const y=p.y*h+Math.sin(time*1.3+p.phase)*10;
+      const a=.20+.18*(Math.sin(time*2+p.phase)+1)/2;
+      glow(x,y,p.r,pal.c,a);
+    });
+
+    // Large cinematic rotating rings.
+    const cx=w*.5,cy=h*.52;
+    const base=Math.min(w,h)*.25;
+    ctx.save();ctx.translate(cx,cy);
+    ctx.rotate(time*.20);
+    [1,.78,.56].forEach((k,i)=>{
+      ctx.strokeStyle=rgba(i===0?pal.a:i===1?pal.b:pal.c,.24+.08*Math.sin(time*2+i));
+      ctx.lineWidth=i===0?2:1;
+      ctx.setLineDash(i===1?[8,12]:i===2?[2,9]:[18,8]);
+      ctx.beginPath();ctx.arc(0,0,base*k,0,Math.PI*2);ctx.stroke();
+    });
+    ctx.setLineDash([]);ctx.restore();
+
+    // A bright comet sweeps through the scene continuously.
+    const q=(time*.18)%1;
+    const cometX=-40+q*(w+80), cometY=h*.24+Math.sin(q*Math.PI*2)*h*.18;
+    for(let i=8;i>0;i--){
+      const tx=cometX-i*18,ty=cometY-i*4;
+      ctx.strokeStyle=rgba(pal.c,.035*i);ctx.lineWidth=i*.8;ctx.beginPath();ctx.moveTo(tx,ty);ctx.lineTo(tx+30,ty+7);ctx.stroke();
+    }
+    glow(cometX,cometY,4,pal.c,.95);
+
+    // Different historical scene in the same animated black rectangle.
+    if(era===0){
+      const pts=[.12,.30,.50,.70,.88].map((x,i)=>({x:x*w,y:h*(.58+.16*Math.sin(i*1.4))}));
+      const edges=[[0,1],[1,2],[2,3],[3,4],[0,2],[1,4]];
+      edges.forEach((e,i)=>{
+        const a=pts[e[0]],b=pts[e[1]];line(a.x,a.y,b.x,b.y,pal.a,.35,1.5);
+        const z=(time*.20+i*.17)%1;glow(a.x+(b.x-a.x)*z,a.y+(b.y-a.y)*z,3,pal.c,.9);
+      });
+      pts.forEach((p,i)=>{glow(p.x,p.y,6+Math.sin(time*3+i)*2,pal.a,.75);ctx.font='bold 10px Arial';ctx.fillStyle=rgba(pal.c,.75);ctx.fillText(['ТЪРНОВО','ПЛОВДИВ','СОФИЯ','ШУМЕН','ВАРНА'][i],p.x+9,p.y-10)});
+    } else if(era===1){
+      ctx.save();ctx.translate(cx,cy);ctx.rotate(Math.sin(time*.4)*.025);
+      ctx.fillStyle='rgba(224,214,184,.07)';ctx.strokeStyle=rgba(pal.a,.65);ctx.lineWidth=2;rr(-w*.27,-h*.31,w*.54,h*.62,10);ctx.fill();ctx.stroke();
+      for(let i=0;i<10;i++)line(-w*.20,-h*.20+i*h*.042,w*.20,-h*.20+i*h*.042,pal.c,.20,1);
+      ctx.restore();
+      ctx.save();ctx.translate(cx,cy);ctx.rotate(-time*.45);ctx.strokeStyle=rgba(pal.c,.8);ctx.lineWidth=2;ctx.beginPath();ctx.arc(0,0,base*.55,0,Math.PI*2);ctx.stroke();ctx.beginPath();ctx.arc(0,0,base*.35,0,Math.PI*2);ctx.stroke();ctx.restore();
+      glow(cx,cy,5,pal.a,.95);ctx.font='bold 24px Georgia';ctx.fillStyle=rgba(pal.c,.9);ctx.fillText('1879',cx-27,cy+8);
+    } else if(era===2){
+      ctx.strokeStyle=rgba(pal.b,.28);ctx.lineWidth=1;
+      for(let i=0;i<7;i++){ctx.beginPath();ctx.arc(cx,cy,30+i*28+Math.sin(time+i)*3,0,Math.PI*2);ctx.stroke()}
+      ctx.beginPath();ctx.moveTo(w*.08,h*.75);ctx.bezierCurveTo(w*.28,h*.15,w*.58,h*.88,w*.92,h*.28);ctx.strokeStyle=rgba(pal.a,.85);ctx.lineWidth=3;ctx.stroke();
+      const z=(time*.14)%1, x=w*(.08+.84*z), y=h*(.75-.47*Math.sin(z*Math.PI));glow(x,y,7,pal.c,1);
+      ctx.fillStyle=rgba(pal.a,.65);ctx.font='bold 11px Arial';ctx.fillText('СТРАТЕГИЧЕСКИ МАРШРУТ',w*.08,h*.88);
+    } else if(era===3){
+      ['1919','1923','1934','1944'].forEach((yr,i)=>{
+        const x=w*(.14+i*.24),y=h*.55+Math.sin(time*.7+i)*7, lift=Math.sin(time*1.2+i)*9;
+        ctx.save();ctx.translate(x,y-lift);ctx.rotate((i-1.5)*.025);ctx.fillStyle='rgba(220,210,190,.07)';ctx.strokeStyle=rgba(pal.a,.5);ctx.lineWidth=1.5;rr(-45,-32,90,64,5);ctx.fill();ctx.stroke();ctx.font='bold 13px Arial';ctx.fillStyle=rgba(pal.c,.9);ctx.fillText(yr,-16,5);ctx.restore();
+        glow(x,y,4,pal.c,.55);
+      });
+      line(w*.08,h*.76,w*.92,h*.76,pal.a,.5,2);
+    } else {
+      const years=['1989','1991','2004','2007'];
+      line(w*.10,h*.60,w*.90,h*.60,pal.b,.65,3);
+      years.forEach((yr,i)=>{const x=w*(.12+i*.255);const pulse=7+4*Math.sin(time*3-i);glow(x,h*.60,pulse,pal.a,.65);ctx.font='bold 13px Arial';ctx.fillStyle=rgba(pal.c,.95);ctx.fillText(yr,x-17,h*.43)});
+      const orb=time*.6;ctx.save();ctx.translate(cx,h*.60);ctx.rotate(orb);ctx.strokeStyle=rgba(pal.b,.65);ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(0,0,base*.75,base*.25,0,0,Math.PI*2);ctx.stroke();ctx.restore();
+    }
+
+    // Fixed archival title; all motion remains inside the rectangle.
+    ctx.font='bold 11px Arial';ctx.fillStyle=rgba(pal.c,.82);ctx.fillText(pal.name,18,23);
+    ctx.font='10px Arial';ctx.fillStyle='rgba(210,205,190,.50)';ctx.fillText('ЖИВ ИСТОРИЧЕСКИ АРХИВ',18,h-16);
+    state.visualFrame=requestAnimationFrame(frame);
+   }catch(err){
+     // Keep the game alive even if a drawing feature is unsupported.
+     ctx.setTransform(1,0,0,1,0,0);ctx.fillStyle='#05080d';ctx.fillRect(0,0,w,h);
+     ctx.fillStyle=pal.c;ctx.font='bold 16px Arial';ctx.fillText('ИСТОРИЧЕСКИ АРХИВ',18,30);
+     ctx.font='12px Arial';ctx.fillStyle='#aaa';ctx.fillText('Анимацията продължава...',18,52);
+     state.visualFrame=requestAnimationFrame(frame);
+   }
+ }
+ requestAnimationFrame(frame);
+}
+
+function showTimeWarning(){
+ if(state.timeWarning)return;
+ state.timeWarning=true;
+ const el=$('timeWarning');el.classList.add('show');
+ beep(120,.12);setTimeout(()=>beep(90,.16),130);
+ try{
+   if('speechSynthesis' in window){
+     window.speechSynthesis.cancel();
+     const u=new SpeechSynthesisUtterance('Няма време!');
+     u.lang='bg-BG';u.rate=.9;u.pitch=.9;u.volume=1;
+     window.speechSynthesis.speak(u);
+   }
+ }catch(e){}
+ setTimeout(()=>el.classList.remove('show'),2200);
+}
+function startTimer(seconds=20){
+ clearInterval(state.timer); if(state.visualFrame)cancelAnimationFrame(state.visualFrame);
+ state.timeWarning=false;
+ state.currentDuration=seconds;
+ $('timeWarning').classList.remove('show');
+ const questionId=state.questionId;
+ let t=seconds;
+ state.start=performance.now();
+ $('time').textContent=t;
+ $('timer').classList.remove('danger');
+ $('timer').style.setProperty('--pct','100%');
+ state.timer=setInterval(()=>{
+   if(questionId!==state.questionId){clearInterval(state.timer);return;}
+   if(state.answered){clearInterval(state.timer);return;}
+   t--;
+   $('time').textContent=Math.max(0,t);
+   $('timer').style.setProperty('--pct',Math.max(0,t)/seconds*100+'%');
+   if(t<=5){
+     $('timer').classList.add('danger');
+     if(t>0)beep(75,.06);
+     if(t===5)showTimeWarning();
+   }
+   if(t<=0){
+     clearInterval(state.timer);
+     if(state.answered)return;
+     if(state.cross)skipCross(true); else resolve(false,null,true);
+   }
+ },1000);
+}
+function addHint(hint, solution){
+ const wrap=document.createElement("div");
+ wrap.className="hintBar";
+ wrap.innerHTML=`<button class="hintBtn" id="hintBtn">💡 ПОДСКАЗКА</button><button class="solutionBtn" id="solutionBtn">◈ ПОКАЖИ РЕШЕНИЕ</button><div class="hintBox" id="hintBox">${hint}</div><div class="solutionBox" id="solutionBox">${solution}</div>`;
+ $("challenge").appendChild(wrap);
+ $("hintBtn").onclick=()=>{const b=$("hintBox");b.classList.toggle("show");$("hintBtn").textContent=b.classList.contains("show")?"💡 СКРИЙ ПОДСКАЗКАТА":"💡 ПОДСКАЗКА"};
+ $("solutionBtn").onclick=()=>{const b=$("solutionBox");b.classList.toggle("show");$("solutionBtn").textContent=b.classList.contains("show")?"◈ СКРИЙ РЕШЕНИЕ":"◈ ПОКАЖИ РЕШЕНИЕ"};
+}
+function renderOptions(arr,correct,onAnswer){
+ const opts=shuffle(arr.map((text,i)=>({text,i})));
+ const box=document.createElement('div'); box.className='options';
+ box.innerHTML=opts.map((o,i)=>`<button type="button" class="option" data-i="${o.i}"><span class="letter">${String.fromCharCode(65+i)}</span><span>${o.text}</span></button>`).join('');
+ $('challenge').appendChild(box);
+}
+function renderQuiz(item){
+ if(item.type==="person"){
+   renderOptions(item.roles,item.c,(ok,b)=>resolve(ok,b));
+   addHint("Помисли за ролята, с която тази личност е най-тясно свързана.",`Правилният отговор е: <b>${item.roles[item.c]}</b>.`);
+   return;
+ }
+ renderOptions(item.a,item.c,(ok,b)=>resolve(ok,b));
+ addHint("Отхвърли най-очевидно несвързаните с периода отговори и търси точната връзка между личност, събитие и време.",`Правилният отговор е: <b>${item.a[item.c]}</b>.`);
+}
+function renderChrono(item){
+ const rows=shuffle(item.items.map((text,i)=>({text,i})));
+ const box=document.createElement('div');
+ box.innerHTML=`<div class="order" id="order">${rows.map(o=>`<div class="orderRow" data-i="${o.i}"><button type="button" data-dir="-1" aria-label="Премести нагоре">↑</button><button type="button" data-dir="1" aria-label="Премести надолу">↓</button><span>${o.text}</span></div>`).join('')}</div><div class="check"><button type="button" class="cta" id="checkOrder">ПРОВЕРИ ХРОНОЛОГИЯТА</button></div>`;
+ $('challenge').appendChild(box);
+ const first=item.order[0],last=item.order[item.order.length-1];
+ addHint(`Първата следа: <b>„${item.items[first]}“</b> е най-ранното събитие, а <b>„${item.items[last]}“</b> е най-късното. Подреди останалите между тях.`,`Правилната последователност е: <b>${item.order.map(i=>item.items[i]).join(' → ')}</b>.`);
+}
+function crossHint(word){
+ const hints={
+  'БЪЛГАРИЯ':'Името на държавата, за която разказва цялата тази историческа експедиция.',
+  'ЛЕВСКИ':'Фамилията на Апостола на свободата.',
+  'ШИПКА':'Исторически връх, превърнал се в символ на героизма през 1877–1878 г.',
+  'ПЛОВДИВ':'Градът, свързан със Съединението от 6 септември 1885 г.',
+  'ТЪРНОВО':'Старопрестолният град, в който е приета Търновската конституция.',
+  'РЕВОЛЮЦИЯ':'Думата описва организираната борба за политическа промяна.',
+  'ВЪЗРАЖДАНЕ':'Епохата на национално пробуждане и културно развитие.'
+ };
+ return hints[word]||'Главната дума е свързана с историята и българското национално развитие.';
+}
+function renderCross(){
+ const data=state.cross,center=8; let grid=Array.from({length:data.rows.length},()=>Array(17).fill(null));
+ data.rows.forEach((r,row)=>{const answer=r[0].toUpperCase(),pos=r[2],start=center-pos;for(let j=0;j<answer.length;j++)if(start+j>=0&&start+j<15)grid[row][start+j]=j===pos?'key':'active';});
+ $('challenge').innerHTML=visualHTML()+`<div class="crossLayout"><div><div class="crossGrid">${grid.map((row,ri)=>row.map((cell,ci)=>cell?`<div class="crossCell ${cell==='key'?'key':''}"><input type="text" maxlength="1" autocomplete="off" spellcheck="false" data-r="${ri}" data-c="${ci}"></div>`:'<div></div>').join('')).join('')}</div><div class="crossResult" id="crossResult">Централната колона ще образува <strong>скрита историческа дума</strong>.</div><div class="crossHint"><b>Малка подсказка за главната дума:</b> ${crossHint(data.word)}</div></div><div class="crossClues">${data.rows.map((r,i)=>`<div class="clue"><b>${i+1}</b><span>${r[1]} <em style="color:#6f6a60;font-size:10px">(${r[0].length} букви)</em></span></div>`).join('')}<button type="button" class="cta" id="checkCross">ПРОВЕРИ КРЪСТОСЛОВИЦАТА</button><button type="button" class="cta crossSkip" id="skipCross">ПРОПУСНИ · КЪМ СЛЕДВАЩАТА</button><div class="hintBar"><button type="button" class="hintBtn" id="crossLetterHint">💡 ДАЙ МИ ЕДНА БУКВА</button><div class="hintBox" id="crossLetterBox"></div></div></div></div>`;
+ drawVisual();
+}
+function checkCross(data){
+ if(state.answered)return; let ok=true;
+ data.rows.forEach((r,ri)=>{const answer=r[0].toUpperCase(),start=8-r[2];for(let j=0;j<answer.length;j++){const inp=document.querySelector(`input[data-r="${ri}"][data-c="${start+j}"]`);if(!inp||inp.value.toUpperCase()!==answer[j]){ok=false;if(inp){inp.style.color='var(--red)';inp.parentElement.classList.add('wrongCell');}}else if(inp){inp.style.color='var(--green)';inp.parentElement.classList.remove('wrongCell');}}});
+ if(ok){state.answered=true;clearInterval(state.timer);$('timeWarning').classList.remove('show');const elapsed=Math.min(90,(performance.now()-state.start)/1000);state.totalTime+=elapsed;state.score+=Math.max(80,180-Math.round(elapsed));state.correct++;if(state.stage==='final')state.finalCorrect++;success();$('crossResult').innerHTML=`<strong>Главната дума е: ${data.word}</strong> — кръстословицата е решена напълно.`;showFeedback('КРЪСТОСЛОВИЦАТА Е РЕШЕНА',`Скритата дума е „${data.word}“. Отлична работа.`);$('checkCross').disabled=true;$('skipCross').disabled=true;$('crossLetterHint').disabled=true;showNextButton();updateHud();}else{wrong();$('crossResult').innerHTML='<strong>Има още грешки.</strong> Червените клетки показват къде има разминаване. Можеш да поправяш и да провериш отново.';}
+}
+function skipCross(timedOut=false){
+ if(state.answered)return;state.answered=true;clearInterval(state.timer);$('timeWarning').classList.remove('show');
+ if(timedOut){wrong();showFeedback('ВРЕМЕТО ИЗТЕЧЕ',`Кръстословицата беше пропусната. Скритата дума е „${state.cross.word}“.`);}else showFeedback('КРЪСТОСЛОВИЦАТА Е ПРОПУСНАТА',`Можеш да продължиш. Скритата дума беше „${state.cross.word}“.`);
+ $('crossResult').innerHTML=`<strong>Решение: ${state.cross.word}</strong> — продължи към следващата задача.`;$('checkCross').disabled=true;$('skipCross').disabled=true;$('crossLetterHint').disabled=true;showNextButton();updateHud();
+}
+function showFeedback(title,text){const old=$('challenge').querySelector('.explain');if(old)old.remove();$('challenge').insertAdjacentHTML('beforeend',`<div class="explain"><b>${title}</b><br>${text}</div>`)}
+function showNextButton(){ $('nextBtn').textContent=state.stage==='final'?(state.finalIndex===9?'ВИЖ ОЦЕНКАТА':'СЛЕДВАЩ ВЪПРОС'):(state.trainingDone>=14?'КЪМ ФИНАЛНИЯ ТЕСТ':'ПРОДЪЛЖИ →'); $('nextBtn').classList.add('show'); }
+function resolve(ok,source,timedOut=false){
+ if(state.answered)return;state.answered=true;clearInterval(state.timer);$('timeWarning').classList.remove('show');
+ const elapsed=Math.min(state.currentDuration,(performance.now()-state.start)/1000);state.totalTime+=elapsed;if(source?.classList)source.classList.add(ok?'correct':'wrong');document.querySelectorAll('#challenge .option,#checkOrder,.orderRow button').forEach(b=>b.disabled=true);
+ if(ok){state.correct++;state.score+=Math.max(40,120-Math.round(elapsed*3));success();}else{state.lives--;wrong();}
+ const item=state.challenge,title=timedOut?'ВРЕМЕТО ИЗТЕЧЕ':(ok?'ВЯРНО':'НЕВЯРНО');let detail='';if(timedOut){if(item?.type==='timeline')detail=`Времето изтече. Правилната последователност е: <b>${item.order.map(i=>item.items[i]).join(' → ')}</b>.`;else detail=`Времето изтече. ${item?.e||''}`;}else detail=item?.e||'';
+ if(state.stage==='training')showFeedback(title,detail);else{state.finalCorrect+=ok?1:0;showFeedback(title,item?.e||'');}updateHud();showNextButton();if(state.lives<=0)$('nextBtn').textContent='КЪМ ФИНАЛНИЯ ТЕСТ';
+}
+function chooseTraining(){const eligible=BANK.filter(x=>{if(state.mode==='quiz')return x.type==='mcq'||x.type==='person';if(state.mode==='chrono')return x.type==='timeline';return true;});return shuffle(eligible);}
+function nextCrossword(){if(!state.crossOrder.length){state.crossOrder=shuffle(CROSSWORDS.map((_,i)=>i));state.crossIndex=0;}if(state.crossIndex>=state.crossOrder.length){state.crossOrder=shuffle(CROSSWORDS.map((_,i)=>i));state.crossIndex=0;}state.cross=CROSSWORDS[state.crossOrder[state.crossIndex++]];}
+function renderTraining(){
+ clearInterval(state.timer);
+ state.questionId++;
+ state.answered=false;
+ state.timeWarning=false;
+ state.cross=null;
+ state.stage='training';
+ state.era=Math.min(4,Math.floor(state.trainingDone/3));
+ setHeader();
+ $('qnum').textContent=`ТРЕНИРОВКА ${state.trainingDone+1} / 15`;
+ $('challenge').innerHTML='';
+ $('nextBtn').classList.remove('show');
+ const crosswordTurn=state.mode==='cross'||(state.mode==='mixed'&&state.trainingDone%5===4);
+ if(crosswordTurn){
+   nextCrossword();
+   $('qnum').textContent=`КРЪСТОСЛОВИЦА ${state.trainingDone+1} / 15`;
+   renderCross();
+   startTimer(90);
+   updateHud();
+   return;
+ }
+ if(!state.trainingPool)state.trainingPool=chooseTraining();
+ if(state.trainingPool.length===0)state.trainingPool=chooseTraining();
+ const item=state.trainingPool.pop();
+ state.challenge=item;
+ $('challenge').insertAdjacentHTML('beforeend',visualHTML()+`<p class="question">${item.q}</p>`);
+ drawVisual();
+ if(item.type==='timeline'){renderChrono(item);startTimer(35);}
+ else{renderQuiz(item);startTimer(25);}
+ updateHud();
+}
+function renderFinal(){state.stage='final';state.finalIndex=0;state.finalCorrect=0;state.finalPool=shuffle(FINAL);show(screens.game);renderFinalQuestion()}
+function renderFinalQuestion(){
+ clearInterval(state.timer);state.questionId++;state.cross=null;state.answered=false;state.timeWarning=false;setHeader();
+ const item=state.finalPool[state.finalIndex];state.challenge=item;$('qnum').textContent=`ФИНАЛЕН ТЕСТ · ${state.finalIndex+1} / 10`;$('nextBtn').classList.remove('show');
+ if(item.type==="cross"){
+   state.cross=item.crossword;renderCross();startTimer(90);updateHud();return;
+ }
+ $('challenge').innerHTML=visualHTML()+`<p class="question">${item.q}</p>`;drawVisual();renderOptions(item.a,item.c,(ok,b)=>resolve(ok,b));updateHud();startTimer(25)
+}
+function next(){if(state.stage==='final'){if(state.finalIndex>=9){finish();return}state.finalIndex++;renderFinalQuestion();return}if(state.lives<=0||state.trainingDone>=14){renderFinal();return}state.trainingDone++;if(state.mode==='cross')state.trainingPool=state.trainingPool||[];renderTraining()}
+function finish(){clearInterval(state.timer);show(screens.end);const pct=Math.round(state.finalCorrect/10*100);$('finalScore').textContent=state.score;$('finalCorrect').textContent=`${state.finalCorrect}/10`;$('finalTime').textContent=(state.totalTime/(state.trainingDone+10)).toFixed(1)+' s';$('finalLives').textContent=state.lives;$('assessmentPct').textContent=pct+'%';$('assessmentFill').style.width=pct+'%';let rank,text;if(pct>=90){rank='Отлично подготвен за 7. клас';text='Показваш много стабилни знания, добра хронология и сигурност при основните личности и събития.'}else if(pct>=75){rank='Много добро ниво';text='Имаш добра основа. Няколко повторения на датите и връзките между събитията ще затвърдят знанията.'}else if(pct>=60){rank='Добро ниво';text='Основните теми са познати, но има пропуски. Преговори хронологията и ключовите понятия.'}else if(pct>=40){rank='Средно ниво';text='Разпознаваш част от материала, но е нужен целенасочен преговор по епохи.'}else{rank='Нужно е още упражнение';text='Започни от основните дати, личности и събития и премини отново през петте епохи.'}$('rank').textContent=rank;$('assessmentText').textContent=text;$('endTitle').textContent='Твоето историческо ниво';$('endMessage').textContent=`Режим: ${modeName()}. Финалният тест е смесен и е еднакъв като структура при всеки опит, но въпросите и отговорите се разбъркват.`;$('breakdown').innerHTML=ERAS.map((e,i)=>`<div class="levelBox"><b>${i+1}. ${e.title}</b><span>Епоха от учебния материал за 7. клас</span></div>`).join('');particles()}
+function reset(){clearInterval(state.timer);if(state.visualFrame)cancelAnimationFrame(state.visualFrame);if('speechSynthesis' in window)window.speechSynthesis.cancel();Object.assign(state,{era:0,q:0,score:0,lives:3,correct:0,totalTime:0,answered:false,timeWarning:false,questionId:0,currentDuration:20,visualFrame:0,trainingDone:0,finalIndex:0,finalCorrect:0,cross:null,crossOrder:[],crossIndex:0,trainingPool:null,finalPool:null});show(screens.start);updateHud();document.querySelectorAll('.modeCard').forEach(x=>x.classList.remove('selected'))}
+function begin(){if(state.visualFrame)cancelAnimationFrame(state.visualFrame);if('speechSynthesis' in window)window.speechSynthesis.cancel();state.mode=document.querySelector('.modeCard.selected')?.dataset.mode||'mixed';state.stage='training';state.trainingPool=null;state.crossOrder=[];state.crossIndex=0;state.trainingDone=0;state.score=0;state.lives=3;state.correct=0;state.totalTime=0;state.questionId++;show(screens.game);renderTraining()}
+function beep(freq,dur){if(!state.sound)return;try{const AC=window.AudioContext||window.webkitAudioContext;if(!state.audio)state.audio=new AC();const o=state.audio.createOscillator(),g=state.audio.createGain();o.frequency.value=freq;g.gain.value=.025;o.connect(g).connect(state.audio.destination);o.start();g.gain.exponentialRampToValueAtTime(.0001,state.audio.currentTime+dur);o.stop(state.audio.currentTime+dur+.02)}catch(e){}}
+function success(){
+ beep(660,.13);setTimeout(()=>beep(880,.18),90);confetti();
+}
+function wrong(){
+ beep(100,.22);
+ $('fx').innerHTML='<div class="flash"></div><div class="wrongMark">×</div>';
+ setTimeout(()=>$('fx').innerHTML='',600);
+}
+function confetti(){
+ const shapes=['■','◆','●','▰'];
+ for(let i=0;i<55;i++){
+   const p=document.createElement('i');p.className='particle';p.textContent=shapes[i%shapes.length];
+   p.style.left=40+Math.random()*20+'%';p.style.top=12+Math.random()*12+'%';
+   p.style.background=['#d8ad55','#fff1b0','#22c77a','#e14a52','#62b9ff'][i%5];
+   p.style.color=p.style.background;p.style.width=(5+Math.random()*6)+'px';p.style.height=(5+Math.random()*6)+'px';
+   p.style.setProperty('--dx',(Math.random()*2-1)*80+'vw');p.style.animationDelay=Math.random()*.22+'s';
+   $('fx').appendChild(p);setTimeout(()=>p.remove(),1500);
+ }
+}
+
+$('challenge').addEventListener('input',e=>{
+ const inp=e.target.closest('input[data-r]');
+ if(!inp)return;
+ inp.value=inp.value.slice(-1).toUpperCase();
+});
+$('challenge').addEventListener('click',e=>{
+ if(state.answered)return;
+ const option=e.target.closest('.option');
+ if(option){
+   const item=state.challenge;
+   if(!item)return;
+   const correct=item.type==='person'?item.c:item.c;
+   const ok=Number(option.dataset.i)===correct;
+   resolve(ok,option);
+   return;
+ }
+ const orderBtn=e.target.closest('.orderRow button');
+ if(orderBtn){
+   const list=$('order'); if(!list)return;
+   const row=orderBtn.parentElement;
+   const dir=Number(orderBtn.dataset.dir);
+   const sib=dir<0?row.previousElementSibling:row.nextElementSibling;
+   if(!sib)return;
+   if(dir<0)list.insertBefore(row,sib); else list.insertBefore(sib,row);
+   return;
+ }
+ const check=e.target.closest('#checkOrder');
+ if(check){
+   const item=state.challenge, list=$('order');
+   if(!item||!list)return;
+   const got=[...list.children].map(x=>Number(x.dataset.i));
+   const ok=got.length===item.order.length&&got.every((v,i)=>v===item.order[i]);
+   if(ok){resolve(true,check);}
+   else{
+     const wrongAt=got.findIndex((v,i)=>v!==item.order[i]);
+     if(wrongAt>=0){const row=list.children[wrongAt];row.style.borderColor='var(--red)';row.classList.add('orderWrong');setTimeout(()=>{row.style.borderColor='';row.classList.remove('orderWrong')},900);}
+     wrong();
+     showFeedback('НЕВЕРНА ПОСЛЕДОВАТЕЛНОСТ',`Подреждането още не е правилно. Поправи го и опитай отново.`);
+   }
+   return;
+ }
+ const letter=e.target.closest('#crossLetterHint');
+ if(letter){
+   const data=state.cross;if(!data)return;
+   const empty=[...document.querySelectorAll('#challenge input[data-r]')].filter(x=>!x.value&&!x.disabled);
+   if(!empty.length)return;
+   const inp=empty[Math.floor(Math.random()*empty.length)],ri=Number(inp.dataset.r),ci=Number(inp.dataset.c);
+   const r=data.rows[ri],answer=r[0].toUpperCase(),start=8-r[2],idx=ci-start;
+   if(idx>=0&&idx<answer.length){inp.value=answer[idx];inp.disabled=true;inp.style.color='var(--gold2)';$('crossLetterBox').textContent='Една буква е поставена като помощ. Останалото решение остава твое.';$('crossLetterBox').classList.add('show');}
+   return;
+ }
+ const checkCrossBtn=e.target.closest('#checkCross');
+ if(checkCrossBtn){checkCross(state.cross);return;}
+ const skip=e.target.closest('#skipCross');
+ if(skip){skipCross(false);return;}
+});
+document.querySelectorAll('.modeCard').forEach(b=>b.onclick=()=>{document.querySelectorAll('.modeCard').forEach(x=>x.classList.remove('selected'));b.classList.add('selected')});
+$('startBtn').onclick=()=>{if(!document.querySelector('.modeCard.selected'))document.querySelector('[data-mode="mixed"]').classList.add('selected');try{state.audio=new (window.AudioContext||window.webkitAudioContext)()}catch(e){}begin()};
+$('restartBtn').onclick=reset;$('nextBtn').onclick=next;$('soundBtn').onclick=()=>{state.sound=!state.sound;$('soundBtn').textContent=state.sound?'♫':'🔇'};$('homeArrow').onclick=()=>{reset();window.scrollTo({top:0,behavior:'smooth'})};updateHud();
+</script>
+
+
+<script>
+// Mobile compatibility guard: keep the game usable if a nonessential browser API is unavailable.
+(function(){
+  try{
+    if('serviceWorker' in navigator && location.protocol!=='file:'){
+      window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}),{once:true});
+    }
+  }catch(e){}
+  window.addEventListener('error',function(ev){
+    // Do not let a nonessential visual/audio error freeze the game.
+    try{ if(window.state){ window.state.visualFrame=0; } }catch(e){}
+  });
+})();
+</script>
+</body>
+</html>
