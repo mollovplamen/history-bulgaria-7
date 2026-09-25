@@ -1,0 +1,24 @@
+{
+  "name": "История на България — Ultimate Seventh-Grade Quest",
+  "short_name": "История на България",
+  "lang": "bg-BG",
+  "start_url": "./history_of_bulgaria_7th_grade_quest_v13.html",
+  "display": "standalone",
+  "background_color": "#080b10",
+  "theme_color": "#080b10",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
