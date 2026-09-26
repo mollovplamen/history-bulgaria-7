@@ -38,6 +38,128 @@ main{max-width:1250px;margin:auto;padding:18px 18px 60px}.screen{display:none}.s
 .endCard{max-width:900px;margin:8vh auto;padding:40px;border:1px solid #e0b95f40;border-radius:25px;background:linear-gradient(145deg,#17202a,#090e14);text-align:center}.endCard h2{font-size:52px;margin:12px 0;color:#fff3da}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:22px 0}.stat{padding:15px;border:1px solid #e0b95f25;border-radius:12px;background:#111923}.stat small{display:block;color:#888175;font:9px Arial}.stat b{display:block;color:var(--gold2);font:800 25px Arial;margin-top:5px}
 @media(max-width:900px){.lessonGrid{grid-template-columns:1fr 1fr}.options{grid-template-columns:1fr}.crossWrap{grid-template-columns:1fr}}
 @media(max-width:650px){.topin{flex-wrap:wrap}.brand{min-width:0;flex:1}.progress{order:3;flex-basis:100%}.hud{margin-left:auto}.heroCard{padding:25px 17px}.lessonGrid{grid-template-columns:1fr}.gameHead{align-items:flex-start}.visual{height:260px}.crossWrap{grid-template-columns:1fr}.cwcell{width:27px;height:27px}.cwcell input{font-size:15px}.stats{grid-template-columns:1fr 1fr}.homeRow{justify-content:flex-start}.question{font-size:21px}}
+
+.nextRow{flex-wrap:wrap;gap:8px}.cta,.hint,.modeBtn,.home{white-space:normal;max-width:100%}.question,.finalTitle,.lead,.tltext,.clueBox{overflow-wrap:anywhere}.panel{min-width:0}.options{min-width:0}.opt{overflow-wrap:anywhere}
+.yearStage{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px;pointer-events:none;overflow:hidden;perspective:1100px;background:radial-gradient(circle at 50% 48%,#d5ad5a12 0,#0000 42%),linear-gradient(180deg,#00000018,#00000065)}
+.yearStage:before,.yearStage:after{content:"";position:absolute;left:50%;top:50%;border:1px solid #d8b75b44;border-radius:50%;transform:translate(-50%,-50%);animation:yearOrbit 10s linear infinite;}
+.yearStage:before{width:min(72%,390px);aspect-ratio:1;box-shadow:0 0 30px #d8b75b12 inset}.yearStage:after{width:min(92%,560px);aspect-ratio:1;border-color:#d8b75b22;animation-duration:15s;animation-direction:reverse}
+.yearStage .yearCore{position:relative;z-index:3;min-width:min(88%,760px);transform-style:preserve-3d}
+.yearStage .year{font-family:Georgia,"Times New Roman",serif;font-size:clamp(58px,12vw,132px);font-weight:900;letter-spacing:clamp(3px,1vw,10px);line-height:.9;color:#f8dc83;text-shadow:0 0 8px #f4d47766,0 0 30px #d6a83c55,0 5px 25px #000;opacity:0;transform:translateY(35px) rotateX(-55deg) scale(.72);transform-origin:center bottom;transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .95s cubic-bezier(.16,1,.3,1);filter:blur(5px)}
+.yearStage .year:after{content:""}
+.yearStage .desc{margin:20px auto 0;font:700 clamp(13px,2vw,20px)/1.5 Georgia,"Times New Roman",serif;color:#f4ead6;max-width:850px;opacity:0;transform:translateY(22px) rotateX(25deg);transition:opacity .8s .18s,transform .9s .18s; text-shadow:0 2px 12px #000}
+.yearStage.show .year{opacity:1;transform:translateY(0) rotateX(0) scale(1);filter:blur(0)}.yearStage.show .desc{opacity:1;transform:none}
+.yearStage .era{position:relative;margin-bottom:10px;font:800 10px Arial;letter-spacing:5px;color:#d4b968;text-transform:uppercase;opacity:0;transform:translateY(-10px);transition:opacity .55s .05s,transform .55s}.yearStage.show .era{opacity:.95;transform:none}
+.yearStage .yearLine{position:relative;width:min(520px,72%);height:1px;margin:17px auto 0;background:linear-gradient(90deg,transparent,#d9b65eaa,transparent);opacity:0;transform:scaleX(.2);transition:opacity .7s .25s,transform .9s .25s}.yearStage.show .yearLine{opacity:1;transform:scaleX(1)}
+.yearStage .spark{position:absolute;width:4px;height:4px;border-radius:50%;background:#f6d978;box-shadow:0 0 14px 4px #e1bd5a77;animation:yearSpark 3.2s ease-in-out infinite}.yearStage .s1{left:18%;top:28%;animation-delay:-.7s}.yearStage .s2{right:17%;top:35%;animation-delay:-1.8s}.yearStage .s3{left:28%;bottom:24%;animation-delay:-2.4s}.yearStage .s4{right:28%;bottom:20%;animation-delay:-1.2s}
+@keyframes yearOrbit{from{transform:translate(-50%,-50%) rotate(0deg) scale(.96)}to{transform:translate(-50%,-50%) rotate(360deg) scale(1.04)}}
+@keyframes yearSpark{0%,100%{opacity:.15;transform:scale(.5) translateY(0)}50%{opacity:1;transform:scale(1.8) translateY(-10px)}}
+
+/* DISTINCT HISTORICAL ENTRY STYLES — each date/event gets its own entrance */
+.yearStage .year,.yearStage .desc,.yearStage .era{will-change:transform,opacity,filter,clip-path}
+.yearStage.show .year{animation-duration:1.05s;animation-fill-mode:both}
+.yearStage.show .desc{animation-duration:.95s;animation-delay:.28s;animation-fill-mode:both}
+.yearStage.show .era{animation-duration:.65s;animation-fill-mode:both}
+
+.yearStage.v0.show .year{animation-name:histSpin}.yearStage.v0.show .desc{animation-name:histRise}
+.yearStage.v1.show .year{animation-name:histDrop}.yearStage.v1.show .desc{animation-name:histSweep}
+.yearStage.v2.show .year{animation-name:histZoom}.yearStage.v2.show .desc{animation-name:histReveal}
+.yearStage.v3.show .year{animation-name:histFlip}.yearStage.v3.show .desc{animation-name:histSlide}
+.yearStage.v4.show .year{animation-name:histStamp}.yearStage.v4.show .desc{animation-name:histType}
+.yearStage.v5.show .year{animation-name:histOrbitIn}.yearStage.v5.show .desc{animation-name:histArc}
+.yearStage.v6.show .year{animation-name:histGlitch}.yearStage.v6.show .desc{animation-name:histGlitchText}
+.yearStage.v7.show .year{animation-name:histCurtain}.yearStage.v7.show .desc{animation-name:histCurtainText}
+
+@keyframes histSpin{
+  0%{opacity:0;transform:perspective(800px) rotateY(-150deg) rotateX(35deg) scale(.45);filter:blur(12px)}
+  55%{opacity:1;transform:perspective(800px) rotateY(18deg) rotateX(-5deg) scale(1.08);filter:blur(0)}
+  100%{opacity:1;transform:perspective(800px) rotateY(0) rotateX(0) scale(1);filter:blur(0)}
+}
+@keyframes histRise{
+  0%{opacity:0;transform:translateY(55px) scale(.85);filter:blur(7px)}
+  65%{opacity:1;transform:translateY(-5px) scale(1.02);filter:blur(0)}
+  100%{opacity:1;transform:none}
+}
+@keyframes histDrop{
+  0%{opacity:0;transform:translateY(-100px) scale(.7);filter:blur(9px)}
+  60%{opacity:1;transform:translateY(8px) scale(1.05);filter:blur(0)}
+  100%{opacity:1;transform:none}
+}
+@keyframes histSweep{
+  0%{opacity:0;transform:translateX(180px) skewX(-18deg);clip-path:inset(0 100% 0 0)}
+  100%{opacity:1;transform:none;clip-path:inset(0 0 0 0)}
+}
+@keyframes histZoom{
+  0%{opacity:0;transform:scale(2.4);filter:blur(16px)}
+  45%{opacity:1;filter:blur(0)}
+  100%{opacity:1;transform:scale(1)}
+}
+@keyframes histReveal{
+  0%{opacity:0;transform:scaleX(.1);clip-path:inset(0 50%);letter-spacing:10px}
+  100%{opacity:1;transform:scaleX(1);clip-path:inset(0);letter-spacing:normal}
+}
+@keyframes histFlip{
+  0%{opacity:0;transform:perspective(900px) rotateX(90deg) rotateZ(-8deg) scale(.7)}
+  55%{opacity:1;transform:perspective(900px) rotateX(-12deg) rotateZ(2deg) scale(1.04)}
+  100%{opacity:1;transform:none}
+}
+@keyframes histSlide{
+  0%{opacity:0;transform:translateX(-220px) rotateY(35deg);filter:blur(5px)}
+  100%{opacity:1;transform:none;filter:none}
+}
+@keyframes histStamp{
+  0%{opacity:0;transform:scale(3) rotate(7deg);filter:blur(8px)}
+  45%{opacity:1;transform:scale(.92) rotate(-2deg);filter:none}
+  65%{transform:scale(1.06) rotate(1deg)}
+  100%{opacity:1;transform:scale(1) rotate(0)}
+}
+@keyframes histType{
+  0%{opacity:0;clip-path:inset(0 100% 0 0);transform:translateX(-20px)}
+  100%{opacity:1;clip-path:inset(0);transform:none}
+}
+@keyframes histOrbitIn{
+  0%{opacity:0;transform:rotate(-18deg) translate(-90px,40px) scale(.55);filter:blur(10px)}
+  55%{opacity:1;transform:rotate(5deg) translate(10px,-5px) scale(1.08);filter:none}
+  100%{opacity:1;transform:none}
+}
+@keyframes histArc{
+  0%{opacity:0;transform:translateY(30px) rotateX(-70deg);filter:blur(8px)}
+  100%{opacity:1;transform:none;filter:none}
+}
+@keyframes histGlitch{
+  0%{opacity:0;transform:translateX(-35px);filter:blur(8px)}
+  20%{opacity:1;transform:translateX(18px);filter:none}
+  24%{transform:translateX(-12px)}
+  30%{transform:translateX(7px)}
+  36%{transform:translateX(-3px)}
+  100%{opacity:1;transform:none}
+}
+@keyframes histGlitchText{
+  0%{opacity:0;transform:translateX(35px);filter:blur(6px)}
+  25%{opacity:1;transform:translateX(-12px);filter:none}
+  31%{transform:translateX(8px)}
+  38%{transform:translateX(-2px)}
+  100%{opacity:1;transform:none}
+}
+@keyframes histCurtain{
+  0%{opacity:0;transform:scaleX(.05) scaleY(1.25);filter:blur(5px);letter-spacing:25px}
+  55%{opacity:1;transform:scaleX(1.06) scaleY(.96);filter:none;letter-spacing:8px}
+  100%{opacity:1;transform:scale(1);letter-spacing:clamp(3px,1vw,10px)}
+}
+@keyframes histCurtainText{
+  0%{opacity:0;transform:translateY(-35px);clip-path:polygon(0 0,100% 0,100% 0,0 0)}
+  100%{opacity:1;transform:none;clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
+}
+@media(max-width:650px){
+  .yearStage .year{font-size:clamp(64px,20vw,100px)}
+  .yearStage .desc{font-size:clamp(14px,4vw,19px);max-width:92%}
+}
+@media(prefers-reduced-motion:reduce){
+  .yearStage.show .year,.yearStage.show .desc,.yearStage.show .era{animation:none!important}
+}
+@media(max-width:650px){.visual{height:250px}.yearStage{padding:16px}.yearStage .year{letter-spacing:2px}.yearStage .desc{margin-top:14px;line-height:1.35}.yearStage .yearLine{margin-top:13px}.ratingCard{padding:28px 16px}.ratingCard .gradeName{font-size:20px}}
+@media(prefers-reduced-motion:reduce){.yearStage:before,.yearStage:after,.yearStage .spark{animation:none}.yearStage .year,.yearStage .desc,.yearStage .era,.yearStage .yearLine{transition:none}}
+.ratingCard{max-width:760px;margin:20px auto;padding:34px 24px;border:1px solid #e0b95f55;border-radius:22px;background:linear-gradient(145deg,#17202a,#090e14);text-align:center;box-shadow:0 25px 80px #0009}.ratingCard h3{font:800 13px Arial;letter-spacing:3px;color:#d7b967;margin:0 0 8px}.ratingCard .grade{font:900 clamp(70px,13vw,120px)/1 Georgia,serif;color:#ffe39a;text-shadow:0 0 24px #e0b95f33}.ratingCard .gradeName{font:800 24px Arial;color:#fff1d0}.ratingCard .details{margin:14px 0 20px;color:#bcb3a4;font:13px/1.5 Arial}.lifeOut{position:fixed;inset:0;background:#05080de8;z-index:140;display:grid;place-items:center;padding:20px}.lifeOut .box{width:min(560px,100%);padding:34px 24px;text-align:center;border:1px solid #e6535c80;border-radius:24px;background:#101820;box-shadow:0 30px 100px #000}.lifeOut h2{margin:0 0 10px;color:#ffb4b8;font:900 clamp(26px,6vw,42px) Arial}.lifeOut p{color:#ddd0c5;font:15px/1.5 Arial;margin:0 0 22px}.sound.on{border-color:#e0b95f;background:#1b2530}.sound.off{opacity:.65}
+@media(max-width:650px){.visual{height:250px}.yearStage{padding:16px}.yearStage .year{letter-spacing:3px}.ratingCard{padding:28px 16px}.ratingCard .gradeName{font-size:20px}}
 </style>
 <link rel="icon" type="image/png" sizes="1024x1024" href="icon.png">
 <link rel="apple-touch-icon" sizes="1024x1024" href="icon.png">
@@ -46,13 +168,61 @@ main{max-width:1250px;margin:auto;padding:18px 18px 60px}.screen{display:none}.s
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="История на България">
+
+<style id="premium-year-animation">
+.yearStage{background:radial-gradient(circle at 50% 45%,rgba(214,170,65,.18),transparent 30%),radial-gradient(circle at 50% 50%,rgba(255,255,255,.04),transparent 60%),#050505;overflow:hidden;isolation:isolate}
+.yearStage:before{width:min(82%,520px);border:1px solid rgba(225,190,91,.42);box-shadow:0 0 45px rgba(218,180,74,.12),inset 0 0 50px rgba(218,180,74,.08);animation:orbitBig 9s linear infinite}
+.yearStage:after{width:min(115%,760px);border:1px dashed rgba(225,190,91,.18);animation:orbitBig 18s linear infinite reverse}
+.yearStage .yearCore{min-width:min(94%,900px);transform-style:preserve-3d}
+.yearStage .era{font-size:clamp(9px,1.1vw,13px);letter-spacing:clamp(4px,1vw,9px);text-shadow:0 0 18px rgba(230,194,94,.45);margin-bottom:12px}
+.yearStage .year{font-size:clamp(82px,16vw,190px);letter-spacing:clamp(4px,1.2vw,16px);line-height:.78;color:#ffe28a;text-shadow:0 0 5px #fff2ad,0 0 22px rgba(246,204,91,.85),0 0 65px rgba(218,163,42,.55),0 12px 35px #000;transform:translateY(45px) rotateY(-70deg) rotateX(25deg) scale(.55);filter:blur(10px);transition:opacity .35s,transform 1.05s cubic-bezier(.16,1,.3,1),filter .8s}
+.yearStage.show .year{transform:translateY(0) rotateY(0) rotateX(0) scale(1)}
+.yearStage .yearLine{height:3px;width:min(680px,82%);margin:22px auto 0;background:linear-gradient(90deg,transparent,#ffe28a 20%,#fff3b9 50%,#ffe28a 80%,transparent);box-shadow:0 0 16px rgba(241,200,85,.65);transform-origin:center;position:relative}
+.yearStage .yearLine:before,.yearStage .yearLine:after{content:"";position:absolute;top:50%;width:9px;height:9px;border:1px solid #ffe28a;border-radius:50%;background:#090909;box-shadow:0 0 14px #ffe28a;transform:translateY(-50%)}
+.yearStage .yearLine:before{left:12%}.yearStage .yearLine:after{right:12%}
+.yearStage .desc{position:relative;margin:26px auto 0;max-width:min(900px,92%);font:800 clamp(17px,2.5vw,29px)/1.22 Georgia,"Times New Roman",serif;letter-spacing:.3px;color:#fff8e8;text-shadow:0 2px 4px #000,0 0 18px rgba(242,202,91,.32);opacity:0;transform:translateY(35px) rotateX(-55deg) scale(.88);transition:opacity .5s .22s,transform .9s .22s cubic-bezier(.16,1,.3,1)}
+.yearStage.show .desc{opacity:1;transform:none}
+.yearStage .desc:before{content:"";position:absolute;left:50%;bottom:-17px;width:38%;height:1px;background:linear-gradient(90deg,transparent,#d9b65e,transparent);transform:translateX(-50%) scaleX(0);transition:transform .9s .55s}.yearStage.show .desc:before{transform:translateX(-50%) scaleX(1)}
+.yearStage .spark{width:5px;height:5px;box-shadow:0 0 18px 5px rgba(240,203,100,.8);animation:particleFloat 2.5s ease-in-out infinite}
+.yearStage .s1{left:12%;top:23%}.yearStage .s2{right:12%;top:29%}.yearStage .s3{left:20%;bottom:20%}.yearStage .s4{right:20%;bottom:18%}
+.yearStage .premiumRing{position:absolute;left:50%;top:50%;width:58%;aspect-ratio:1;border:1px solid rgba(255,222,125,.14);border-radius:50%;transform:translate(-50%,-50%) rotateX(68deg);box-shadow:0 0 25px rgba(225,180,65,.08);animation:ringPulse 4s ease-in-out infinite}
+.yearStage .premiumRing.r2{width:42%;animation-delay:-1.3s;transform:translate(-50%,-50%) rotateX(68deg) rotateZ(25deg)}
+.yearStage .dateSlash{position:absolute;left:50%;top:50%;width:92%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,225,140,.3),transparent);transform:translate(-50%,-50%) rotate(-18deg);animation:slashSweep 4s ease-in-out infinite}
+@keyframes orbitBig{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+@keyframes particleFloat{0%,100%{opacity:.15;transform:translate(0,12px) scale(.4)}50%{opacity:1;transform:translate(15px,-22px) scale(2)}}
+@keyframes ringPulse{0%,100%{opacity:.25;scale:.94}50%{opacity:.75;scale:1.05}}
+@keyframes slashSweep{0%,100%{opacity:0;transform:translate(-50%,-50%) rotate(-18deg) scaleX(.2)}45%{opacity:1}60%{transform:translate(-50%,-50%) rotate(-18deg) scaleX(1)}80%{opacity:0}}
+@media(max-width:650px){.visual{height:285px}.yearStage .year{font-size:clamp(72px,22vw,125px)}.yearStage .desc{font-size:clamp(16px,4.8vw,22px);max-width:94%;margin-top:22px}.yearStage .yearLine{margin-top:18px;width:86%}.yearStage:after{width:150%}}
+@media(prefers-reduced-motion:reduce){.yearStage:before,.yearStage:after,.yearStage .spark,.yearStage .premiumRing,.yearStage .dateSlash{animation:none}}
+</style>
+
+<style id="year-text-fit-fix">
+/* По-голямата година остава доминираща, но дългите събития получават повече въздух. */
+.yearStage{padding:18px 24px}
+.yearStage .yearCore{width:min(94%,960px);min-width:0}
+.yearStage .year{font-size:clamp(78px,14.5vw,174px);line-height:.82}
+.yearStage .yearLine{margin-top:20px}
+.yearStage .desc{width:min(900px,94%);max-width:94%;font-size:clamp(18px,2.15vw,27px);line-height:1.18;margin-top:20px;text-wrap:balance;overflow-wrap:anywhere}
+/* При по-дълъг текст намаляваме леко само годината, без да губим ефекта. */
+.yearStage.longEvent .year{font-size:clamp(72px,13vw,158px)}
+.yearStage.longEvent .desc{font-size:clamp(17px,2vw,25px);max-width:92%}
+@media(max-width:650px){
+  .visual{height:300px}
+  .yearStage{padding:14px 12px}
+  .yearStage .year{font-size:clamp(68px,20vw,116px);line-height:.82}
+  .yearStage.longEvent .year{font-size:clamp(64px,18vw,106px)}
+  .yearStage .desc{font-size:clamp(16px,4.4vw,21px);line-height:1.2;width:96%;max-width:96%;margin-top:17px}
+  .yearStage.longEvent .desc{font-size:clamp(15px,4vw,19px);max-width:96%}
+  .yearStage .yearLine{margin-top:15px;width:88%}
+}
+</style>
 </head>
 <body>
 <header class="top">
  <div class="topin">
   <div class="brand"><b>БЪЛГАРСКА ИСТОРИЯ</b><span>ИНТЕРАКТИВНА ЕКСПЕДИЦИЯ · 7. КЛАС</span></div>
   <div class="progress"><div class="pmeta"><span id="prog">Каталог</span><span id="pct">0%</span></div><div class="bar"><i id="fill"></i></div></div>
-  <div class="hud"><div class="pill"><small>ТОЧКИ</small><b id="score">0</b></div><div class="pill"><small>ЖИВОТИ</small><b id="lives">♥ ♥ ♥</b></div><button class="sound" id="soundBtn">♫</button></div>
+  <div class="hud"><div class="pill"><small>ТОЧКИ</small><b id="score">0</b></div><div class="pill"><small>ЖИВОТИ</small><b id="lives">♥ ♥ ♥ ♥ ♥</b></div><button class="sound" id="soundBtn">♫</button></div>
  </div>
 </header>
 
@@ -116,32 +286,32 @@ const DATA={"lessons":[{"id":0,"title":"Начален преговор. Евр�
 const LESSONS=DATA.lessons, SUPPORT=DATA.support, TIMELINES=DATA.timelines, SUPPORT_TIMELINES=DATA.supportTimelines, CROSS_BY_TOPIC=DATA.crossByTopic, FINAL_CROSS=DATA.finalCross, CLUES=DATA.clues;
 const $=id=>document.getElementById(id);
 const screens={start:$('start'),catalog:$('catalog'),game:$('game'),final:$('final'),end:$('end')};
-let current=null,currentSupport=null,mode='quiz',index=0,lives=3,points=0,correct=0,timer=null,timeLimit=20,locked=false;
-let finalSet=[],finalIndex=0,finalRightCount=0,finalPoints=0;
+let current=null,currentSupport=null,mode='quiz',index=0,lives=5,points=0,correct=0,timer=null,timeLimit=20,locked=false;
+let finalSet=[],finalIndex=0,finalRightCount=0,finalPoints=0,finalLives=7,finalLastSignature='';
 let crossHistory={}; try{crossHistory=JSON.parse(localStorage.getItem('bg7_cross_history')||'{}')}catch(e){}
 function shuffle(a){const x=[...a];for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function show(name){Object.values(screens).forEach(x=>x.classList.remove('active'));screens[name].classList.add('active');window.scrollTo(0,0);hud()}
-function hud(){ $('score').textContent=points; $('lives').textContent=('♥ '.repeat(lives)+ '♡ '.repeat(3-lives)).trim(); let p=0,label='Каталог'; if(current||currentSupport){const n=getQuestions().length;p=Math.round(index/Math.max(1,n)*100);label=mode==='quiz'?'Въпроси':mode==='chrono'?'Хронология':'Кръстословица'}else if(finalSet.length){p=Math.round(finalIndex/finalSet.length*100);label='Финален тест'} $('fill').style.width=p+'%';$('pct').textContent=p+'%';$('prog').textContent=label}
+function hud(){ $('score').textContent=points; const isFinal=document.getElementById('final')?.classList.contains('active'); const hl=isFinal?finalLives:lives; const hm=isFinal?7:5; $('lives').textContent=('♥ '.repeat(Math.max(0,hl))+ '♡ '.repeat(Math.max(0,hm-hl))).trim(); let p=0,label='Каталог'; if(current||currentSupport){const n=getQuestions().length;p=Math.round(index/Math.max(1,n)*100);label=mode==='quiz'?'Въпроси':mode==='chrono'?'Хронология':'Кръстословица'}else if(finalSet.length){p=Math.round(finalIndex/finalSet.length*100);label='Финален тест'} $('fill').style.width=p+'%';$('pct').textContent=p+'%';$('prog').textContent=label}
 function buildCatalog(){const cats=['Всички','Начален преговор','Българското възраждане','България от Освобождението до края на Втората световна война','България след Втората световна война до 1989 г.','Република България след 1989 г.','Умения и преговор'];$('tabs').innerHTML=cats.map((x,i)=>`<button class="tab ${i?'':'active'}" data-cat="${esc(x)}">${esc(x)}</button>`).join('');document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderCatalog(b.dataset.cat)});renderCatalog('Всички')}
 function renderCatalog(cat){let arr=cat==='Всички'?LESSONS:LESSONS.filter(x=>x.section===cat);let out=arr.map(x=>`<button class="lesson" data-id="${x.id}"><span class="num">ТЕМА ${x.id+1}</span><b>${esc(x.title)}</b><small>${esc(x.section)}</small></button>`).join('');if(cat==='Всички'||cat==='Умения и преговор'){out+='<div class="groupTitle">УМЕНИЯ И ПРЕГОВОР · ИСТОРИЧЕСКИ ЗАДАЧИ</div>';out+=Object.entries(SUPPORT).map(([t,d])=>`<button class="lesson" data-support="${encodeURIComponent(t)}"><span class="num">УМЕНИЯ / ПРЕГОВОР</span><b>${esc(t)}</b><small>${esc(d.category)}</small></button>`).join('')}$('lessonGrid').innerHTML=out;document.querySelectorAll('[data-id]').forEach(b=>b.onclick=()=>startLesson(+b.dataset.id));document.querySelectorAll('[data-support]').forEach(b=>b.onclick=()=>startSupport(decodeURIComponent(b.dataset.support)))}
 function getQuestions(){return current?current.questions:(SUPPORT[currentSupport]?.questions||[])}
-function startLesson(id){current=LESSONS[id];currentSupport=null;index=0;lives=3;points=0;correct=0;mode='quiz';show('game');$('sectionTitle').textContent=current.section;$('lessonTitle').textContent=current.title;startVisual(current,null);renderTask()}
-function startSupport(t){currentSupport=t;current=null;index=0;lives=3;points=0;correct=0;mode='quiz';show('game');$('sectionTitle').textContent=SUPPORT[t].category;$('lessonTitle').textContent=t;startVisual(null,t);renderTask()}
+function startLesson(id){current=LESSONS[id];currentSupport=null;index=0;lives=5;points=0;correct=0;mode='quiz';show('game');$('sectionTitle').textContent=current.section;$('lessonTitle').textContent=current.title;startVisual(current,null);renderTask()}
+function startSupport(t){currentSupport=t;current=null;index=0;lives=5;points=0;correct=0;mode='quiz';show('game');$('sectionTitle').textContent=SUPPORT[t].category;$('lessonTitle').textContent=t;startVisual(null,t);renderTask()}
 function setMode(){document.querySelectorAll('.modeBtn').forEach(b=>b.classList.toggle('active',b.dataset.mode===mode));$('modeLabel').textContent=mode==='quiz'?'ВЪПРОСИ':mode==='chrono'?'ХРОНОЛОГИЯ':'КРЪСТОСЛОВИЦА'}
 document.querySelectorAll('.modeBtn').forEach(b=>b.onclick=()=>{if(!current&&!currentSupport)return;mode=b.dataset.mode;index=0;locked=false;renderTask()});
 function renderTask(){clearInterval(timer);locked=false;$('feedback').classList.remove('show');$('nextBtn').classList.add('hidden');$('tools').innerHTML='';setMode();if(mode==='quiz')renderQuiz();else if(mode==='chrono')renderChrono();else renderCross()}
 function renderQuiz(){const qs=getQuestions();if(index>=qs.length){finishLesson();return}const q=qs[index];$('qnum').textContent=`ВЪПРОС ${index+1} / ${qs.length}`;$('task').innerHTML=`<p class="question">${esc(q.q)}</p><div class="options">${q.a.map((a,i)=>`<button class="opt" data-i="${i}"><b>${String.fromCharCode(65+i)}</b> · ${esc(a)}</button>`).join('')}</div>`;$('tools').innerHTML='<button class="hint" id="hint">💡 ПОДСКАЗКА</button><div class="hintbox" id="hintbox">Прочети внимателно въпроса и търси датата, личността, мястото или събитието, за което се пита.</div>';$('hint').onclick=()=>$('hintbox').classList.toggle('show');document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>answerQuiz(+b.dataset.i,q));startTimer(20)}
-function answerQuiz(i,q){if(locked)return;locked=true;clearInterval(timer);document.querySelectorAll('.opt').forEach(b=>b.disabled=true);const ok=i===q.c;document.querySelector(`.opt[data-i="${i}"]`)?.classList.add(ok?'correct':'wrong');if(ok){points+=100;correct++;clap();confetti();feedback('ВЯРНО',q.e)}else{lives=Math.max(0,lives-1);wrong();flash();feedback('НЕВЕРНО',q.e)}nextButton();hud()}
+function answerQuiz(i,q){if(locked)return;locked=true;clearInterval(timer);document.querySelectorAll('.opt').forEach(b=>b.disabled=true);const ok=i===q.c;document.querySelector(`.opt[data-i="${i}"]`)?.classList.add(ok?'correct':'wrong');if(ok){points+=100;correct++;if(!window.__usedHint)window.__modeCorrect=(window.__modeCorrect||0)+1;clap();confetti();feedback('ВЯРНО',q.e)}else{if(!window.consumeLife())return;wrong();flash();feedback('НЕВЕРНО',q.e)}nextButton();hud()}
 function feedback(t,x){$('feedback').innerHTML=`<b>${esc(t)}</b><br>${esc(x||'')}`;$('feedback').classList.add('show')}
 function nextButton(){ $('nextBtn').classList.remove('hidden');$('nextBtn').textContent='ПРОДЪЛЖИ →';$('nextBtn').onclick=()=>{index++;renderTask()} }
 function startTimer(sec){clearInterval(timer);timeLimit=sec;const isFinal=document.getElementById('final')?.classList.contains('active');const timeEl=$(isFinal?'finalTime':'time');const timerEl=$(isFinal?'finalTimer':'timer');const end=Date.now()+sec*1000;let warned=false;function tick(){const left=Math.max(0,(end-Date.now())/1000);if(timeEl)timeEl.textContent=Math.ceil(left);if(timerEl){timerEl.style.setProperty('--deg',Math.max(0,left/sec)*360+'deg');timerEl.classList.toggle('danger',left<=5)}if(left<=5&&!warned){warned=true;warnTime()}if(left<=0){clearInterval(timer);timeOut()}}tick();timer=setInterval(tick,100)}
 function warnTime(){$('warn').classList.add('show');setTimeout(()=>$('warn').classList.remove('show'),1800);try{const u=new SpeechSynthesisUtterance('НЯМА ВРЕМЕ!');u.lang='bg-BG';speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
-function timeOut(){if(locked)return;locked=true;lives=Math.max(0,lives-1);wrong();flash();feedback('НЯМА ВРЕМЕ!','Времето изтече.');nextButton();hud()}
-function renderChrono(){const title=current?current.title:currentSupport;const source=current?TIMELINES[title]:SUPPORT_TIMELINES[title];const canonical=(source||[]).slice(0,4);$('qnum').textContent='ХРОНОЛОГИЯ';$('task').innerHTML=`<div class="chronoHint">Подреди събитията от най-ранното към най-късното. На компютър влачи картите, на телефон използвай ↑ и ↓.</div><div class="timeline" id="timeline"></div><div class="nextRow"><button class="cta" id="checkChrono">ПРОВЕРИ ПОСЛЕДОВАТЕЛНОСТТА</button></div>`;const items=shuffle(canonical.map((text,id)=>({text,id})));drawTimeline(items);$('checkChrono').onclick=()=>{const ok=items.every((x,i)=>x.id===i);if(ok){clearInterval(timer);points+=150;correct++;clap();confetti();feedback('ВЯРНО','Хронологията е подредена правилно.');nextButton()}else{lives=Math.max(0,lives-1);wrong();flash();feedback('НЕВЕРНО','Подреди събитията от най-ранното към най-късното и опитай отново.');hud();startTimer(20)}};startTimer(25)}
+function timeOut(){if(locked)return;locked=true;if(!window.consumeLife())return;wrong();flash();feedback('НЯМА ВРЕМЕ!','Времето изтече.');nextButton();hud()}
+function renderChrono(){const title=current?current.title:currentSupport;const source=current?TIMELINES[title]:SUPPORT_TIMELINES[title];const canonical=(source||[]).slice(0,4);$('qnum').textContent='ХРОНОЛОГИЯ';$('task').innerHTML=`<div class="chronoHint">Подреди събитията от най-ранното към най-късното. На компютър влачи картите, на телефон използвай ↑ и ↓.</div><div class="timeline" id="timeline"></div><div class="nextRow"><button class="cta" id="checkChrono">ПРОВЕРИ ПОСЛЕДОВАТЕЛНОСТТА</button></div>`;const items=shuffle(canonical.map((text,id)=>({text,id})));drawTimeline(items);$('checkChrono').onclick=()=>{const ok=items.every((x,i)=>x.id===i);if(ok){clearInterval(timer);points+=150;correct++;clap();confetti();feedback('ВЯРНО','Хронологията е подредена правилно.');nextButton()}else{if(!window.consumeLife())return;wrong();flash();feedback('НЕВЕРНО','Подреди събитията от най-ранното към най-късното и опитай отново.');hud();startTimer(20)}};startTimer(25)}
 function drawTimeline(items){const list=$('timeline');const redraw=()=>{list.innerHTML=items.map((x,i)=>`<div class="tlcard" draggable="true" data-id="${x.id}"><div class="tlbadge">${i+1}</div><div class="tltext">${esc(x.text)}</div><div class="arrows"><button data-m="-1">↑</button><button data-m="1">↓</button></div></div>`).join('');bind()};function bind(){list.querySelectorAll('.tlcard').forEach(card=>{card.ondragstart=e=>{card.classList.add('dragging');e.dataTransfer.setData('text/plain',card.dataset.id)};card.ondragend=()=>card.classList.remove('dragging');card.ondragover=e=>e.preventDefault();card.ondrop=e=>{e.preventDefault();const from=items.findIndex(x=>x.id==e.dataTransfer.getData('text/plain')),to=items.findIndex(x=>x.id==card.dataset.id);if(from>=0&&to>=0){const [a]=items.splice(from,1);items.splice(to,0,a);redraw()}};card.querySelectorAll('[data-m]').forEach(b=>b.onclick=e=>{e.stopPropagation();const at=items.findIndex(x=>x.id==card.dataset.id),to=Math.max(0,Math.min(items.length-1,at+ +b.dataset.m));if(at!==to){const [a]=items.splice(at,1);items.splice(to,0,a);redraw()}})})}redraw()}
 function crossModel(layout){const H=layout.rows,W=layout.cols,grid=layout.grid,nums=new Map(),entries=[];let n=1;for(const p of layout.placed){const key=p.row+','+p.col;if(!nums.has(key))nums.set(key,n++);entries.push({...p,key})}return{H,W,grid,nums,entries}}
-function renderCross(){const title=current?current.title:currentSupport;const variants=CROSS_BY_TOPIC[title]||[];if(!variants.length){$('task').innerHTML='<div class="feedback show">Няма кръстословица за тази тема.</div>';return}const used=crossHistory[title]||[];let choices=variants.map((_,i)=>i).filter(i=>!used.includes(i));if(!choices.length){choices=variants.map((_,i)=>i);crossHistory[title]=[]}const pick=choices[Math.floor(Math.random()*choices.length)];crossHistory[title]=[...(crossHistory[title]||[]),pick].slice(-variants.length);try{localStorage.setItem('bg7_cross_history',JSON.stringify(crossHistory))}catch(e){}const model=crossModel(variants[pick]);$('qnum').textContent=`КРЪСТОСЛОВИЦА · ВАРИАНТ ${pick+1}`;$('task').innerHTML=`<div class="crossWrap"><div><div class="crossBoard"><table><tbody id="crossBody"></tbody></table></div><div class="tools"><button class="hint" id="crossHelp">🔎 ПОМОЩ ЗА 1 БУКВА</button><button class="cta" id="crossCheck">ПРОВЕРИ КРЪСТОСЛОВИЦАТА</button></div></div><div class="clues" id="clues"></div></div>`;const body=$('crossBody');for(let r=0;r<model.H;r++){const tr=document.createElement('tr');for(let c=0;c<model.W;c++){const td=document.createElement('td');const ch=model.grid[r][c];td.className='cwcell '+(ch?'cross':'block');if(ch){const key=r+','+c;if(model.nums.has(key)){const sp=document.createElement('span');sp.className='cwnum';sp.textContent=model.nums.get(key);td.appendChild(sp)}const inp=document.createElement('input');inp.maxLength=1;inp.dataset.r=r;inp.dataset.c=c;inp.autocomplete='off';inp.oninput=()=>inp.value=inp.value.slice(-1).toUpperCase();td.appendChild(inp)}tr.appendChild(td)}body.appendChild(tr)}model.entries.forEach(p=>{$('clues').insertAdjacentHTML('beforeend',`<div class="clueBox"><b>${model.nums.get(p.key)}. ${p.dir==='A'?'ХОРИЗОНТАЛНО':'ВЕРТИКАЛНО'}</b>${esc(CLUES[p.word]||'Историческа дума.')}</div>`)});const inputs=[...document.querySelectorAll('#crossBody input')];$('crossHelp').onclick=()=>{const e=inputs.find(x=>!x.value&&!x.disabled);if(e){e.value=model.grid[+e.dataset.r][+e.dataset.c];e.disabled=true;e.style.color='#8d6a16'}};$('crossCheck').onclick=()=>{const ok=inputs.every(x=>x.value.toUpperCase()===model.grid[+x.dataset.r][+x.dataset.c]);if(ok){clearInterval(timer);points+=200;correct++;clap();confetti();feedback('ВЯРНО','Кръстословицата е решена правилно.');nextButton()}else{wrong();flash();lives=Math.max(0,lives-1);feedback('НЕВЕРНО','Има празни или грешни клетки. Поправи ги и провери отново.');hud();startTimer(30)}};startTimer(90)}
+function renderCross(){const title=current?current.title:currentSupport;const variants=CROSS_BY_TOPIC[title]||[];if(!variants.length){$('task').innerHTML='<div class="feedback show">Няма кръстословица за тази тема.</div>';return}const used=crossHistory[title]||[];let choices=variants.map((_,i)=>i).filter(i=>!used.includes(i));if(!choices.length){choices=variants.map((_,i)=>i);crossHistory[title]=[]}const pick=choices[Math.floor(Math.random()*choices.length)];crossHistory[title]=[...(crossHistory[title]||[]),pick].slice(-variants.length);try{localStorage.setItem('bg7_cross_history',JSON.stringify(crossHistory))}catch(e){}const model=crossModel(variants[pick]);$('qnum').textContent=`КРЪСТОСЛОВИЦА · ВАРИАНТ ${pick+1}`;$('task').innerHTML=`<div class="crossWrap"><div><div class="crossBoard"><table><tbody id="crossBody"></tbody></table></div><div class="tools"><button class="hint" id="crossHelp">🔎 ПОМОЩ ЗА 1 БУКВА</button><button class="cta" id="crossCheck">ПРОВЕРИ КРЪСТОСЛОВИЦАТА</button></div></div><div class="clues" id="clues"></div></div>`;const body=$('crossBody');for(let r=0;r<model.H;r++){const tr=document.createElement('tr');for(let c=0;c<model.W;c++){const td=document.createElement('td');const ch=model.grid[r][c];td.className='cwcell '+(ch?'cross':'block');if(ch){const key=r+','+c;if(model.nums.has(key)){const sp=document.createElement('span');sp.className='cwnum';sp.textContent=model.nums.get(key);td.appendChild(sp)}const inp=document.createElement('input');inp.maxLength=1;inp.dataset.r=r;inp.dataset.c=c;inp.autocomplete='off';inp.oninput=()=>inp.value=inp.value.slice(-1).toUpperCase();td.appendChild(inp)}tr.appendChild(td)}body.appendChild(tr)}model.entries.forEach(p=>{$('clues').insertAdjacentHTML('beforeend',`<div class="clueBox"><b>${model.nums.get(p.key)}. ${p.dir==='A'?'ХОРИЗОНТАЛНО':'ВЕРТИКАЛНО'}</b>${esc(CLUES[p.word]||'Историческа дума.')}</div>`)});const inputs=[...document.querySelectorAll('#crossBody input')];$('crossHelp').onclick=()=>{const e=inputs.find(x=>!x.value&&!x.disabled);if(e){e.value=model.grid[+e.dataset.r][+e.dataset.c];e.disabled=true;e.style.color='#8d6a16'}};$('crossCheck').onclick=()=>{const ok=inputs.every(x=>x.value.toUpperCase()===model.grid[+x.dataset.r][+x.dataset.c]);if(ok){clearInterval(timer);points+=200;correct++;clap();confetti();feedback('ВЯРНО','Кръстословицата е решена правилно.');nextButton()}else{if(!window.consumeLife())return;wrong();flash();feedback('НЕВЕРНО','Има празни или грешни клетки. Поправи ги и провери отново.');hud();startTimer(30)}};startTimer(90)}
 function finishLesson(){clearInterval(timer);$('task').innerHTML='<div class="feedback show"><b>ТЕМАТА Е ЗАВЪРШЕНА</b><br>Избери друг режим, за да упражниш темата отново.</div>';$('tools').innerHTML='';$('nextBtn').classList.add('hidden');confetti();hud()}
 function buildFinal(){
  const allQuiz=LESSONS.flatMap(lesson=>lesson.questions.map(q=>({...q,type:'quiz',topic:lesson.title})) ).concat(Object.entries(SUPPORT).flatMap(([title,box])=>(box.questions||[]).map(q=>({...q,type:'quiz',topic:title}))));
@@ -179,8 +349,8 @@ function renderFinalChrono(q){const inner=$('finalInner');inner.innerHTML=`<div 
 function renderFinalCross(q){const model=crossModel(q.layout);const inner=$('finalInner');inner.innerHTML=`<div class="finalTitle">Тематична кръстословица</div><div class="crossWrap"><div><div class="crossBoard"><table><tbody id="finalCrossBody"></tbody></table></div><div class="tools"><button class="hint" id="finalHelp">🔎 ПОМОЩ ЗА 1 БУКВА</button><button class="cta" id="finalCrossCheck">ПРОВЕРИ</button></div></div><div class="clues" id="finalClues"></div></div>`;const body=$('finalCrossBody');for(let r=0;r<model.H;r++){const tr=document.createElement('tr');for(let c=0;c<model.W;c++){const td=document.createElement('td'),ch=model.grid[r][c];td.className='cwcell '+(ch?'cross':'block');if(ch){const key=r+','+c;if(model.nums.has(key)){const sp=document.createElement('span');sp.className='cwnum';sp.textContent=model.nums.get(key);td.appendChild(sp)}const inp=document.createElement('input');inp.maxLength=1;inp.dataset.r=r;inp.dataset.c=c;inp.oninput=()=>inp.value=inp.value.slice(-1).toUpperCase();td.appendChild(inp)}tr.appendChild(td)}body.appendChild(tr)}model.entries.forEach(p=>$('finalClues').insertAdjacentHTML('beforeend',`<div class="clueBox"><b>${model.nums.get(p.key)}. ${p.dir==='A'?'ХОРИЗОНТАЛНО':'ВЕРТИКАЛНО'}</b>${esc(CLUES[p.word]||'Историческа дума.')}</div>`));const inputs=[...inner.querySelectorAll('input')];$('finalHelp').onclick=()=>{const e=inputs.find(x=>!x.value&&!x.disabled);if(e){e.value=model.grid[+e.dataset.r][+e.dataset.c];e.disabled=true}};$('finalCrossCheck').onclick=()=>{if(inputs.every(x=>x.value.toUpperCase()===model.grid[+x.dataset.r][+x.dataset.c])){clearInterval(timer);finalRightCount++;finalPoints+=200;points+=200;clap();confetti();finalFeedback('ВЯРНО','Кръстословицата е решена правилно.')}else{wrong();flash();finalFeedback('НЕВЕРНО','Има грешни или празни клетки. Поправи ги и провери отново.');startTimer(30)}};startTimer(90)}
 function finalFeedback(t,x){$('finalFeedback').innerHTML=`<b>${esc(t)}</b><br>${esc(x)}`;$('finalFeedback').classList.add('show');$('finalNext').classList.remove('hidden');$('finalNext').textContent=finalIndex===finalSet.length-1?'ВИЖ РЕЗУЛТАТА':'СЛЕДВАЩА ЗАДАЧА →';$('finalNext').onclick=()=>{finalIndex++;renderFinal()};hud()}
 function finishFinal(){clearInterval(timer);show('end');$('endScore').textContent=points;$('endRight').textContent=finalRightCount;$('endTotal').textContent=finalSet.length;$('endPct').textContent=Math.round(finalRightCount/finalSet.length*100)+'%';}
-function clap(){try{const AC=window.AudioContext||window.webkitAudioContext;window.__ac=window.__ac||new AC();const ac=window.__ac;ac.resume?.();const now=ac.currentTime;for(let i=0;i<14;i++){const t=now+i*.055+Math.random()*.018;const dur=.075;const buffer=ac.createBuffer(1,ac.sampleRate*dur,ac.sampleRate),data=buffer.getChannelData(0);for(let j=0;j<data.length;j++)data[j]=(Math.random()*2-1)*Math.exp(-j/data.length*7);const src=ac.createBufferSource(),filter=ac.createBiquadFilter(),g=ac.createGain();filter.type='bandpass';filter.frequency.value=1500+Math.random()*1800;filter.Q.value=.7;g.gain.value=.11;src.buffer=buffer;src.connect(filter).connect(g).connect(ac.destination);src.start(t);src.stop(t+dur)}for(let i=0;i<3;i++){const o=ac.createOscillator(),g=ac.createGain();o.type='triangle';o.frequency.value=650+i*180;g.gain.value=.025;o.connect(g).connect(ac.destination);o.start(now+i*.12);g.gain.exponentialRampToValueAtTime(.0001,now+i*.12+.16);o.stop(now+i*.12+.17)}}catch(e){}}
-function wrong(){try{const AC=window.AudioContext||window.webkitAudioContext;window.__ac=window.__ac||new AC();const ac=window.__ac;ac.resume?.();const now=ac.currentTime;o=ac.createOscillator();g=ac.createGain();o.type='square';o.frequency.setValueAtTime(220,now);o.frequency.exponentialRampToValueAtTime(95,now+.28);g.gain.setValueAtTime(.07,now);g.gain.exponentialRampToValueAtTime(.0001,now+.28);o.connect(g).connect(ac.destination);o.start(now);o.stop(now+.3);for(let i=0;i<2;i++){const o2=ac.createOscillator(),g2=ac.createGain();o2.type='triangle';o2.frequency.value=150-i*25;g2.gain.value=.025;o2.connect(g2).connect(ac.destination);o2.start(now+i*.09);g2.gain.exponentialRampToValueAtTime(.0001,now+i*.09+.14);o2.stop(now+i*.09+.15)}}catch(e){}}
+function clap(){if(window.__soundEnabled===false)return;try{const AC=window.AudioContext||window.webkitAudioContext;window.__ac=window.__ac||new AC();const ac=window.__ac;ac.resume?.();const now=ac.currentTime;for(let i=0;i<14;i++){const t=now+i*.055+Math.random()*.018;const dur=.075;const buffer=ac.createBuffer(1,ac.sampleRate*dur,ac.sampleRate),data=buffer.getChannelData(0);for(let j=0;j<data.length;j++)data[j]=(Math.random()*2-1)*Math.exp(-j/data.length*7);const src=ac.createBufferSource(),filter=ac.createBiquadFilter(),g=ac.createGain();filter.type='bandpass';filter.frequency.value=1500+Math.random()*1800;filter.Q.value=.7;g.gain.value=.11;src.buffer=buffer;src.connect(filter).connect(g).connect(ac.destination);src.start(t);src.stop(t+dur)}for(let i=0;i<3;i++){const o=ac.createOscillator(),g=ac.createGain();o.type='triangle';o.frequency.value=650+i*180;g.gain.value=.025;o.connect(g).connect(ac.destination);o.start(now+i*.12);g.gain.exponentialRampToValueAtTime(.0001,now+i*.12+.16);o.stop(now+i*.12+.17)}}catch(e){}}
+function wrong(){if(window.__soundEnabled===false)return;try{const AC=window.AudioContext||window.webkitAudioContext;window.__ac=window.__ac||new AC();const ac=window.__ac;ac.resume?.();const now=ac.currentTime;o=ac.createOscillator();g=ac.createGain();o.type='square';o.frequency.setValueAtTime(220,now);o.frequency.exponentialRampToValueAtTime(95,now+.28);g.gain.setValueAtTime(.07,now);g.gain.exponentialRampToValueAtTime(.0001,now+.28);o.connect(g).connect(ac.destination);o.start(now);o.stop(now+.3);for(let i=0;i<2;i++){const o2=ac.createOscillator(),g2=ac.createGain();o2.type='triangle';o2.frequency.value=150-i*25;g2.gain.value=.025;o2.connect(g2).connect(ac.destination);o2.start(now+i*.09);g2.gain.exponentialRampToValueAtTime(.0001,now+i*.09+.14);o2.stop(now+i*.09+.15)}}catch(e){}}
 function flash(){const x=document.createElement('div');x.className='flash';$('fx').appendChild(x);setTimeout(()=>x.remove(),500)}
 function confetti(){for(let i=0;i<65;i++){const p=document.createElement('i');p.className='conf';p.textContent=['◆','●','■'][i%3];p.style.left=(40+Math.random()*20)+'%';p.style.top=(5+Math.random()*12)+'%';p.style.color=['#e0b95f','#27d17f','#64c4ff','#e6535c','#fff1b0'][i%5];p.style.setProperty('--x',(-200+Math.random()*400)+'px');p.style.animationDuration=(.9+Math.random()*.7)+'s';$('fx').appendChild(p);setTimeout(()=>p.remove(),1600)}}
 function startVisual(lesson,supportTitle){stopVisual();const facts=lesson?.facts||SUPPORT[supportTitle]?.questions?.map(q=>q.e)||['681 г. · Създаване на Дунавска България'];let fi=0;$('fact').textContent=facts[0]||'';let sc=0;const names=['КАРТА НА БЪЛГАРИЯ','БЪЛГАРИЯ ПРЕДИ НЬОЙСКИЯ ДОГОВОР','ИСТОРИЧЕСКИ ПАМЕТНИЦИ','ИСТОРИЧЕСКА ХРОНИКА'];$('sceneLabel').textContent=names[0];window.__sceneTimer=setInterval(()=>{$('sceneLabel').textContent=names[(++sc)%4]},3500);window.__factTimer=setInterval(()=>{$('fact').style.opacity='0';setTimeout(()=>{$('fact').textContent=facts[(++fi)%facts.length];$('fact').style.opacity='1'},180)},2800);const loop=()=>{drawVisual(sc%4,performance.now()/1000);window.__visual=requestAnimationFrame(loop)};window.__visual=requestAnimationFrame(loop)}
@@ -209,5 +379,129 @@ function renderFinal80(){
 function showFinalNext80(){const b=document.getElementById('finalNext');b.classList.remove('hidden');b.textContent=finalIndex===79?'ВИЖ РЕЗУЛТАТА':'СЛЕДВАЩА ЗАДАЧА →';b.onclick=()=>{if(finalIndex<79){finalIndex++;renderFinal80()}else{finishFinal()}}}
 function finalFeedback(t,x){document.getElementById('finalFeedback').innerHTML='<b>'+esc(t)+'</b><br>'+esc(x||'');document.getElementById('finalFeedback').classList.add('show');showFinalNext80();hud()}
 document.getElementById('finalBtn').onclick=finalStart80;
-</script></body>
+</script><script>
+(function(){
+  window.__soundEnabled=true;
+  window.__usedHint=false;
+  window.__modeCorrect=0;
+  const sound=document.getElementById('soundBtn');
+  if(sound){sound.classList.add('on');sound.title='Изключи звука';sound.onclick=()=>{window.__soundEnabled=!window.__soundEnabled;sound.classList.toggle('on',window.__soundEnabled);sound.classList.toggle('off',!window.__soundEnabled);sound.textContent=window.__soundEnabled?'♫':'🔇';sound.title=window.__soundEnabled?'Изключи звука':'Включи звука';};}
+
+  window.consumeLife=function(){
+    lives=Math.max(0,lives-1);hud();
+    if(lives>0)return true;
+    clearInterval(timer);locked=true;
+    const old=document.getElementById('lifeOut');if(old)old.remove();
+    const o=document.createElement('div');o.className='lifeOut';o.id='lifeOut';
+    o.innerHTML='<div class="box"><h2>ТИ ИЗРАЗХОДИ ЖИВОТИТЕ СИ</h2><p>Всички 5 живота са изчерпани. Започни теста отначало.</p><button class="cta" id="restartLife">ЗАПОЧНИ ОТНАЧАЛО</button></div>';
+    document.body.appendChild(o);
+    document.getElementById('restartLife').onclick=()=>{o.remove();if(document.getElementById('final').classList.contains('active')){finalStartFixed()}else{index=0;lives=5;correct=0;window.__modeCorrect=0;window.__usedHint=false;renderTask();hud()}};
+    return false;
+  };
+  window.gradeFor=p=>p>=85?6:p>=70?5:p>=50?4:p>=30?3:2;
+  window.gradeName=g=>({2:'Слаб',3:'Среден',4:'Добър',5:'Много добър',6:'Отличен'})[g];
+  window.showModeRating=function(title,total,selfSolved,next){
+    clearInterval(timer);locked=true;const pct=total?Math.round(selfSolved/total*100):0,grade=gradeFor(pct);
+    $('task').innerHTML='<div class="ratingCard"><h3>ОЦЕНКА НА ТЕСТА</h3><div class="grade">'+grade+'</div><div class="gradeName">'+gradeName(grade)+'</div><div class="details">'+esc(title)+'<br>'+selfSolved+' от '+total+' задачи самостоятелно · '+pct+'%<br><small>Подсказките не се броят за самостоятелно решени задачи.</small></div><button class="cta" id="ratingContinue">'+(next?'ПРОДЪЛЖИ':'КЪМ ТЕМИТЕ')+' →</button></div>';
+    $('tools').innerHTML='';$('feedback').classList.remove('show');$('nextBtn').classList.add('hidden');
+    $('ratingContinue').onclick=()=>next?next():show('catalog');confetti();
+  };
+
+  // The button after every lesson test shows the grade instead of silently advancing.
+  window.nextButton=function(){
+    $('nextBtn').classList.remove('hidden');
+    const qs=getQuestions(),last=index>=qs.length-1;
+    $('nextBtn').textContent=last?'ВИЖ ОЦЕНКАТА →':'ПРОДЪЛЖИ →';
+    $('nextBtn').onclick=()=>{
+      if(last){
+        const total=mode==='quiz'?qs.length:1;
+        const solved=mode==='quiz'?(window.__modeCorrect||0):(window.__modeCorrect||0);
+        showModeRating(mode==='quiz'?'Въпроси':mode==='chrono'?'Хронология':'Кръстословица',total,solved,()=>{index=0;correct=0;window.__modeCorrect=0;window.__usedHint=false;renderTask();});
+      }else{index++;renderTask();}
+    };
+  };
+
+  // Mark hints as used.
+  const oldQuiz=window.renderQuiz;
+  // Directly replace the hint click in the original renderer after each render.
+  const originalRenderTask=window.renderTask;
+  window.renderTask=function(){originalRenderTask();window.__usedHint=false;const h=document.getElementById('hint');if(h){h.onclick=()=>{window.__usedHint=true;document.getElementById('hintbox')?.classList.toggle('show')}}const ch=document.getElementById('crossHelp');if(ch){ch.addEventListener('click',()=>window.__usedHint=true,{capture:true})}};
+
+  // Visual: elegant animated historical dates.
+  const YEARS=[
+    ['681','Създаване на Дунавска България'],['864','Покръстване при княз Борис I'],['886','Пристигане на учениците на Кирил и Методий'],['893','Начало на управлението на Симеон I'],['1018','Падането на Първото българско царство'],['1185','Въстанието на Асен и Петър'],['1230','Победата при Клокотница'],['1396','Край на средновековната българска държавност и начало на османското владичество'],['1762','„История славянобългарска“ на Паисий Хилендарски'],['1835','Габровското училище и новото образование'],['1870','Учредяване на Българската екзархия'],['1876','Априлско въстание'],['1878','Освобождение на България'],['1879','Търновска конституция'],['1885','Съединение на Княжество България и Източна Румелия'],['1885','Победата при Сливница'],['1908','Обявяване на Независимостта'],['1912','Начало на Балканската война'],['1913','Междусъюзническа война'],['1915','Влизане на България в Първата световна война'],['1918','Край на Първата световна война'],['1923','Деветоюнски преврат'],['1934','Деветнадесетомайски преврат'],['1941','България се присъединява към Тристранния пакт'],['1944','9 септември — смяна на властта'],['1946','Народна република България'],['1947','Димитровска конституция'],['1971','Нова конституция на НРБ'],['1989','10 ноември — начало на прехода'],['1991','Конституция на Република България'],['2004','България става член на НАТО'],['2007','България става член на Европейския съюз']
+  ];
+  window.startVisual=function(){
+    stopVisual();
+    const v=document.querySelector('.visual'); if(!v)return;
+    let st=v.querySelector('.yearStage');
+    if(!st){
+      st=document.createElement('div'); st.className='yearStage';
+      st.innerHTML='<span class="spark s1"></span><span class="spark s2"></span><span class="spark s3"></span><span class="spark s4"></span><div class="premiumRing"></div><div class="premiumRing r2"></div><div class="dateSlash"></div><div class="yearCore"><div class="era">БЪЛГАРСКА ИСТОРИЯ · ХРОНОЛОГИЯ</div><div class="year"></div><div class="yearLine"></div><div class="desc"></div></div>';
+      v.appendChild(st);
+    }
+    const y=st.querySelector('.year'),d=st.querySelector('.desc'),era=st.querySelector('.era');
+    let i=0;
+    const showY=()=>{
+      st.classList.remove('show','v0','v1','v2','v3','v4','v5','v6','v7');
+      const n=i%YEARS.length, variant=n%8;
+      st.classList.add('v'+variant);
+      y.style.transform=''; y.style.filter=''; y.style.opacity='';
+      d.style.transform=''; d.style.filter=''; d.style.opacity='';
+      const item=YEARS[n];
+      y.textContent=item[0];
+      d.textContent=item[1];
+      st.classList.toggle('longEvent', item[1].length > 48);
+      // Every historical date has a distinct entrance treatment.
+      void st.offsetWidth;
+      setTimeout(()=>st.classList.add('show'),80);
+      i++;
+    };
+    showY(); window.__yearTimer=setInterval(showY,3900);
+    const label=$('sceneLabel');if(label)label.textContent='ХРОНОЛОГИЯ · НАЙ-ЗНАЧИМИТЕ МОМЕНТИ';
+    const fact=$('fact');if(fact)fact.textContent='Години · събития · промени · историческа памет';
+  };
+  const oldStop=window.stopVisual;window.stopVisual=function(){if(oldStop)oldStop();clearInterval(window.__yearTimer)};
+
+  // Completely independent final test renderer. It uses the verified FINAL80 array already embedded in this file.
+  function finalStartFixed(){clearInterval(timer);stopVisual();current=null;currentSupport=null;finalIndex=0;finalRightCount=0;window.__finalSelf=0;finalPoints=0;finalLives=7;let candidate=shuffle(FINAL80.map(x=>JSON.parse(JSON.stringify(x))));let sig=candidate.map(x=>x.q||x.title||x.type).join('¦');let guard=0;while(sig===finalLastSignature&&guard<8){candidate=shuffle(FINAL80.map(x=>JSON.parse(JSON.stringify(x))));sig=candidate.map(x=>x.q||x.title||x.type).join('¦');guard++;}finalLastSignature=sig;finalSet=candidate;if(finalSet.length!==80){console.error('FINAL80',finalSet.length);return}show('final');hud();renderFinalFixed()}
+  function finalFinishFixed(){clearInterval(timer);const pct=Math.round((window.__finalSelf||0)/80*100),g=gradeFor(pct);show('end');$('endScore').textContent=finalPoints;$('endRight').textContent=finalRightCount;$('endTotal').textContent=80;$('endPct').textContent=pct+'%';const lead=document.querySelector('#end .lead');lead.innerHTML='<strong style="color:#ffe39a;font-size:18px">ФИНАЛНА ОЦЕНКА</strong><br><span style="font-size:82px;font-weight:900;color:#ffe39a">'+g+'</span><br><strong style="font-size:22px">'+gradeName(g)+'</strong><br><span style="font-size:13px;color:#aaa294">'+(window.__finalSelf||0)+' от 80 задачи самостоятелно · '+pct+'%</span>';confetti()}
+  function finalNextFixed(){if(finalIndex<79){finalIndex++;renderFinalFixed()}else finalFinishFixed()}
+  function finalMessage(t,x){$('finalFeedback').innerHTML='<b>'+esc(t)+'</b><br>'+esc(x);$('finalFeedback').classList.add('show');$('finalNext').classList.remove('hidden');$('finalNext').textContent=finalIndex===79?'ВИЖ ФИНАЛНАТА ОЦЕНКА':'СЛЕДВАЩА ЗАДАЧА →';$('finalNext').onclick=finalNextFixed;hud()}
+  function renderFinalFixed(){
+    clearInterval(timer);locked=false;window.__usedHint=false;const q=finalSet[finalIndex];$('finalQnum').textContent='ЗАДАЧА '+(finalIndex+1)+' / 80';$('finalFeedback').classList.remove('show');$('finalNext').classList.add('hidden');$('finalTask').innerHTML='<div class="finalProgress"><i style="width:'+((finalIndex/80)*100)+'%"></i></div><div class="finalType">ЗАДАЧА '+(finalIndex+1)+' / 80 · '+(q.type==='quiz'?'ВЪПРОС':q.type==='chrono'?'ХРОНОЛОГИЯ':'КРЪСТОСЛОВИЦА')+'</div><div id="finalInner"></div>';
+    if(q.type==='quiz'){
+      $('finalInner').innerHTML='<div class="topicTag">ТЕМА: '+esc(q.topic)+'</div><p class="question">'+esc(q.q)+'</p><div class="options">'+q.a.map((a,i)=>'<button class="opt" data-i="'+i+'"><b>'+String.fromCharCode(65+i)+'</b> · '+esc(a)+'</button>').join('')+'</div>';
+      document.querySelectorAll('#finalInner .opt').forEach(b=>b.onclick=()=>{if(locked)return;locked=true;clearInterval(timer);document.querySelectorAll('#finalInner .opt').forEach(x=>x.disabled=true);const ok=+b.dataset.i===q.c;b.classList.add(ok?'correct':'wrong');if(ok){finalRightCount++;window.__finalSelf++;finalPoints+=100;clap();confetti();finalMessage('ВЯРНО',q.e)}else{if(!window.consumeLife())return;wrong();flash();finalMessage('НЕВЯРНО',q.e)}});startTimer(20);
+    }else if(q.type==='chrono'){
+      let items=shuffle(q.items.map((text,id)=>({text,id})));$('finalInner').innerHTML='<div class="finalTitle">'+esc(q.title)+'</div><div class="chronoHint">Подреди събитията от най-ранното към най-късното.</div><div class="timeline" id="finalTimeline"></div><div class="nextRow"><button class="cta" id="finalChronoCheck">ПРОВЕРИ</button></div>';const list=$('finalTimeline');function redraw(){list.innerHTML=items.map((x,i)=>'<div class="tlcard" draggable="true" data-id="'+x.id+'"><div class="tlbadge">'+(i+1)+'</div><div class="tltext">'+esc(x.text)+'</div><div class="arrows"><button data-m="-1">↑</button><button data-m="1">↓</button></div></div>').join('');list.querySelectorAll('.tlcard').forEach(c=>{c.ondragstart=e=>e.dataTransfer.setData('text/plain',c.dataset.id);c.ondragover=e=>e.preventDefault();c.ondrop=e=>{e.preventDefault();const a=items.findIndex(x=>x.id==e.dataTransfer.getData('text/plain')),b=items.findIndex(x=>x.id==c.dataset.id);if(a>=0&&b>=0){const z=items.splice(a,1)[0];items.splice(b,0,z);redraw()}};c.querySelectorAll('[data-m]').forEach(btn=>btn.onclick=e=>{e.stopPropagation();const a=items.findIndex(x=>x.id==c.dataset.id),b=Math.max(0,Math.min(items.length-1,a+ +btn.dataset.m));if(a!==b){const z=items.splice(a,1)[0];items.splice(b,0,z);redraw()}})})}redraw();$('finalChronoCheck').onclick=()=>{if(items.every((x,i)=>x.id===i)){clearInterval(timer);finalRightCount++;window.__finalSelf++;finalPoints+=150;clap();confetti();finalMessage('ВЯРНО','Хронологията е подредена правилно.')}else{if(!window.consumeLife())return;wrong();flash();finalMessage('НЕВЯРНО','Размести картите и опитай отново.');startTimer(20)}};startTimer(25);
+    }else{
+      const m=crossModel(q.layout);$('finalInner').innerHTML='<div class="finalTitle">Тематична кръстословица</div><div class="crossWrap"><div><div class="crossBoard"><table><tbody id="finalCrossBody"></tbody></table></div><div class="tools"><button class="hint" id="finalHelp">🔎 ПОМОЩ ЗА 1 БУКВА</button><button class="cta" id="finalCrossCheck">ПРОВЕРИ</button></div></div><div class="clues" id="finalClues"></div></div>';const body=$('finalCrossBody');for(let r=0;r<m.H;r++){const tr=document.createElement('tr');for(let c=0;c<m.W;c++){const td=document.createElement('td'),ch=m.grid[r][c];td.className='cwcell '+(ch?'cross':'block');if(ch){const key=r+','+c;if(m.nums.has(key)){const sp=document.createElement('span');sp.className='cwnum';sp.textContent=m.nums.get(key);td.appendChild(sp)}const inp=document.createElement('input');inp.maxLength=1;inp.dataset.r=r;inp.dataset.c=c;inp.oninput=()=>inp.value=inp.value.slice(-1).toUpperCase();td.appendChild(inp)}tr.appendChild(td)}body.appendChild(tr)}m.entries.forEach(p=>$('finalClues').insertAdjacentHTML('beforeend','<div class="clueBox"><b>'+m.nums.get(p.key)+'. '+(p.dir==='A'?'ХОРИЗОНТАЛНО':'ВЕРТИКАЛНО')+'</b>'+esc(CLUES[p.word]||'Историческа дума.')+'</div>'));const inputs=[...document.querySelectorAll('#finalCrossBody input')];$('finalHelp').onclick=()=>{window.__usedHint=true;const e=inputs.find(x=>!x.value&&!x.disabled);if(e){e.value=m.grid[+e.dataset.r][+e.dataset.c];e.disabled=true}};$('finalCrossCheck').onclick=()=>{if(inputs.every(x=>x.value.toUpperCase()===m.grid[+x.dataset.r][+x.dataset.c])){clearInterval(timer);finalRightCount++;if(!window.__usedHint)window.__finalSelf++;finalPoints+=200;clap();confetti();finalMessage('ВЯРНО','Кръстословицата е решена правилно.')}else{if(!window.consumeLife())return;wrong();flash();finalMessage('НЕВЯРНО','Има грешни или празни клетки. Поправи ги и провери отново.');startTimer(30)}};startTimer(90);
+    }
+  }
+  const normalConsumeLife=window.consumeLife;
+  window.consumeLife=function(){
+    const isFinal=document.getElementById('final')?.classList.contains('active');
+    if(!isFinal) return normalConsumeLife();
+    finalLives=Math.max(0,finalLives-1); hud();
+    if(finalLives>0) return true;
+    clearInterval(timer); locked=true;
+    const old=document.getElementById('lifeOut'); if(old)old.remove();
+    const o=document.createElement('div'); o.className='lifeOut'; o.id='lifeOut';
+    o.innerHTML='<div class="box"><h2>ТИ ИЗРАЗХОДИ 7-ТЕ СИ ЖИВОТА</h2><p>Финалният тест започва отново от първия въпрос. При нов опит въпросите, хронологиите и кръстословиците са в нова случайна последователност.</p><button class="cta" id="restartFinalLife">ЗАПОЧНИ ФИНАЛНИЯ ТЕСТ ОТНАЧАЛО</button></div>';
+    document.body.appendChild(o);
+    document.getElementById('restartFinalLife').onclick=()=>{o.remove();finalStartFixed()};
+    return false;
+  };
+
+  window.finalStartFixed=finalStartFixed;
+  const finalBtn=document.getElementById('finalBtn');if(finalBtn)finalBtn.onclick=finalStartFixed;
+  // Rebind lesson buttons to original functions after the five-life initialization.
+  if(typeof buildCatalog==='function')buildCatalog();
+  // Hook sound state into the existing audio functions by keeping their original calls intact.
+  // Reset self-solve state when a new lesson/mode starts.
+  const modeButtons=document.querySelectorAll('.modeBtn');modeButtons.forEach(b=>b.addEventListener('click',()=>{window.__usedHint=false;window.__modeCorrect=0},{capture:true}));
+})();
+</script>
+</body>
 </html>
